@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -121,6 +122,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 
+export QT_QPA_PLATFORM=wayland
 
 alias susp="systemctl suspend"
 alias rmp="rm"
@@ -135,10 +137,13 @@ alias clea="clear"
 alias zshconf="nvim ~/.zshrc"
 alias conf="cd ~/.config/nvim"
 alias dots="cd ~/.dotfiles"
+alias q="exit"
 
 alias Dev="cd ~/Dev"
 alias vi="nvim"
 alias ta="tmux a"
 alias tmux-save="tmux run-shell ~/.config/tmux/plugins/tmux-continuum/scripts/continuum_save.sh"
 
+alias sql="sudo mysql -u root"
 
+bindkey -v

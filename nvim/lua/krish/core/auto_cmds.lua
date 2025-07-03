@@ -1,3 +1,5 @@
+local vim = vim
+
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "markdown",
 	callback = function()
@@ -18,7 +20,8 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		vim.opt_local.wrap = true
 		vim.opt_local.listchars = { tab = "▸ ", trail = "·" }
-		vim.opt_local.formatoptions:append("a") -- "a" enables automatic continuation of lists
+		vim.opt_local.formatoptions:append("r") -- "r" continues comments/lists on new lines
+		vim.opt_local.formatoptions:remove("a") -- Remove "a" to prevent auto-formatting
 		vim.opt_local.smartindent = true
 	end,
 })

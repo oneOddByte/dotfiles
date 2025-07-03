@@ -14,8 +14,10 @@ keymap.set("n", "J", "5j", { desc = "Down 5 lines", noremap = true, silent = tru
 keymap.set("n", "K", "5k", { desc = "Up 5 lines", noremap = true, silent = true })
 keymap.set("n", "<leader>J", "J", { desc = "Join lines", noremap = true, silent = true })
 keymap.set("n", "<leader>K", "K", { desc = "", noremap = true, silent = true })
+
 -- keymap.set("n", "<C-j>", "<C-d>zz", { desc = "Down a page", noremap = true, silent = true })
 -- keymap.set("n", "<C-k>", "<C-u>zz", { desc = "Up a page", noremap = true, silent = true })
+
 keymap.set("n", "<C-j>", "<C-d>", { desc = "Down a page", noremap = true, silent = true })
 keymap.set("n", "<C-k>", "<C-u>", { desc = "Up a page", noremap = true, silent = true })
 keymap.set("n", "<leader>to", ":tabo<CR>", { desc = "", noremap = true, silent = true })
@@ -102,4 +104,3 @@ vim.keymap.set("n", "zo", "zo", { noremap = true, desc = "Open fold" })
 vim.keymap.set("n", "za", "za", { noremap = true, desc = "Toggle fold" })
 vim.keymap.set("n", "zR", "zR", { noremap = true, desc = "Open all folds" })
 vim.keymap.set("n", "zM", "zM", { noremap = true, desc = "Close all folds" })
-
