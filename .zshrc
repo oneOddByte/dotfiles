@@ -123,6 +123,9 @@ fi
 
 
 export QT_QPA_PLATFORM=wayland
+export PATH=$PATH:/usr/local/go/bin
+export PATH="$HOME/go/bin:$PATH"
+
 
 alias susp="systemctl suspend"
 alias rmp="rm"
@@ -140,6 +143,7 @@ alias dots="cd ~/.dotfiles"
 alias q="exit"
 
 alias Dev="cd ~/Dev"
+alias Krish="cd ~/Krish"
 alias vi="nvim"
 alias ta="tmux a"
 alias tmux-save="tmux run-shell ~/.config/tmux/plugins/tmux-continuum/scripts/continuum_save.sh"

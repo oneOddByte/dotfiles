@@ -50,6 +50,20 @@ return {
 							debounce_text_changes = 150,
 						},
 					})
+				elseif server_name == "sqls" then
+					lspconfig.sqls.setup({
+						capabilities = capabilities,
+						on_attach = function(client, bufnr)
+							-- 🚫 Disable formatting
+							client.server_capabilities.documentFormattingProvider = false
+							client.server_capabilities.documentRangeFormattingProvider = false
+						end,
+						settings = {
+							sqls = {
+								connections = {}, -- leave empty or configure actual DBs
+							},
+						},
+					})
 				else
 					lspconfig[server_name].setup({
 						capabilities = capabilities,
