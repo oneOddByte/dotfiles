@@ -1,7 +1,15 @@
 return {
 	"kevinhwang91/nvim-ufo",
 	dependencies = { "nvim-treesitter/nvim-treesitter", "kevinhwang91/promise-async" }, -- UFO requires Treesitter for its best folding
-	event = "BufReadPost", -- Load after a buffer is read
+
+	cmd = { "UfoAttach" },
+	-- Alternative: you could also use keys if you have keymaps
+	keys = {
+		{ "zc", desc = "close fold" },
+		{ "za", desc = "open fold" },
+		{ "zm", desc = "Close folds" },
+	},
+
 	opts = {
 		-- Customize UFO options here
 		-- See section 3 for more details

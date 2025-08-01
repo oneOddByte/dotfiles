@@ -2,7 +2,7 @@ return {
 	-- TokyoNight Theme
 	{
 		"folke/tokyonight.nvim",
-		priority = 1000,
+		-- priority = 1000,
 		config = function()
 			local transparent = false -- set to true if you would like to enable transparency
 
@@ -66,6 +66,7 @@ return {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 10000,
+		lazy = true,
 		config = function()
 			require("catppuccin").setup({ flavor = "mocha" }) -- Choose flavor
 			vim.cmd("colorscheme catppuccin")
@@ -89,7 +90,8 @@ return {
 	{
 		"rose-pine/neovim",
 		name = "rose-pine",
-		priority = 1000,
+		-- priority = 1000,
+		lazy = true,
 		config = function()
 			require("rose-pine").setup({ variant = "moon" })
 			-- vim.cmd("colorscheme rose-pine")
@@ -101,6 +103,7 @@ return {
 	{
 		"rebelot/kanagawa.nvim",
 
+		lazy = false,
 		priority = 1000,
 		config = function()
 			require("kanagawa").setup({
@@ -113,8 +116,8 @@ return {
 	-- example lazy.nvim install setup
 	{
 		"slugbyte/lackluster.nvim",
-		lazy = false,
-		priority = 1000,
+		lazy = true,
+		-- priority = 1000,
 		init = function()
 			vim.cmd.colorscheme("lackluster")
 			vim.api.nvim_set_hl(0, "WinDim", { bg = "none", fg = "none", ctermbg = "none", ctermfg = "none" })
@@ -151,7 +154,7 @@ return {
 
 	{
 		"sainnhe/gruvbox-material",
-		lazy = false,
+		lazy = true,
 		priority = 1000, -- Load before other UI plugins
 		config = function()
 			vim.g.gruvbox_material_background = "hard" -- 'soft', 'medium', 'hard'
@@ -177,7 +180,7 @@ return {
 		-- If you don't want to install lush, make sure to set g:zenbones_compat = 1
 		-- In Vim, compat mode is turned on as Lush only works in Neovim.
 		dependencies = "rktjmp/lush.nvim",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 		-- you can set set configuration options here
 		-- config = function()

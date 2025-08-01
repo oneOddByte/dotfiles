@@ -10,6 +10,29 @@ return {
 			"jay-babu/mason-nvim-dap.nvim", -- (Optional) For easier installation of debuggers (e.g., debugpy, cppdbg)
 			"theHamsta/nvim-dap-virtual-text", -- (Optional) Shows variable values inline in your code
 		},
+
+		cmd = {
+			"DapSetLogLevel",
+			"DapShowLog",
+			"DapContinue",
+			"DapToggleBreakpoint",
+			"DapToggleRepl",
+			"DapStepOver",
+			"DapStepInto",
+			"DapStepOut",
+			"DapTerminate",
+		},
+		-- Or load when pressing debug keymaps
+		keys = {
+			{ "<leader>db", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle Breakpoint" },
+			{ "<leader>dc", "<cmd>DapContinue<cr>", desc = "Continue" },
+			{ "<leader>dr", "<cmd>DapToggleRepl<cr>", desc = "Toggle REPL" },
+			{ "<leader>ds", "<cmd>DapStepOver<cr>", desc = "Step Over" },
+			{ "<leader>di", "<cmd>DapStepInto<cr>", desc = "Step Into" },
+			{ "<leader>do", "<cmd>DapStepOut<cr>", desc = "Step Out" },
+			{ "<leader>dt", "<cmd>DapTerminate<cr>", desc = "Terminate" },
+		},
+
 		-- Configure the plugin when it loads
 		config = function()
 			local dap = require("dap")

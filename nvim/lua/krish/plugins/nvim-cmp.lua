@@ -1,7 +1,8 @@
 return {
 	"hrsh7th/nvim-cmp",
-	-- event = "InsertEnter",
-	event = { "InsertEnter", "BufReadPre", "BufNewFile" },
+
+	event = "InsertEnter",
+	-- event = { "InsertEnter", "BufReadPre", "BufNewFile" },
 
 	dependencies = {
 		"hrsh7th/cmp-path", -- source for file system paths
