@@ -79,10 +79,13 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 -- Your existing requires
 require("krish.core")
 require("krish.lazy")
+require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
 
 -- Your existing colorscheme settings
 -- vim.cmd("colorscheme rose-pine-main")
-vim.cmd("colorscheme kanagawa-wave")
+-- vim.cmd("colorscheme kanagawa-wave")
+vim.cmd("colorscheme catppuccin-mocha")
+-- vim.cmd("colorscheme lackluster")
 
 -- Your existing LSP hover handler configuration
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {

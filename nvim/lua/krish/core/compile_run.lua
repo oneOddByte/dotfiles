@@ -288,6 +288,10 @@ function M.compile_and_run()
 	elseif not cmd and (filetype == "png" or filetype == "jpg" or filetype == "jpeg") then
 		vim.fn.jobstart("mpv " .. vim.fn.shellescape(file) .. " --keep-open --ontop", { detach = true })
 		return
+	elseif ext == "pdf" then
+		-- vim.fn.jobstart({ "brave-browser", file }, { detach = true })
+		vim.fn.jobstart({ "xdg-open", file }, { detach = true })
+		return
 	elseif not cmd then
 		vim.notify("Unsupported filetype: " .. ext .. " (" .. filetype .. ")", vim.log.levels.WARN)
 		return

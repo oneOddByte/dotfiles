@@ -6,9 +6,9 @@ return {
 		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 
 		-- local theme = "gruvbox-material" -- Change to desired theme
-		-- local theme = "catp" -- Change to desired theme
+		local theme = "catp" -- Change to desired theme
 		-- local theme = "rose-pine" -- Change to desired theme
-		local theme = "kanagawa" -- Change to desired theme
+		-- local theme = "kanagawa" -- Change to desired theme
 		local colors
 		local my_lualine_theme
 

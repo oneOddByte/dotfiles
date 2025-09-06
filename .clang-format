@@ -15,3 +15,5 @@ BraceWrapping:
   BeforeElse: true
   BeforeWhile: true
 
+AlwaysBreakTemplateDeclarations: Yes
+

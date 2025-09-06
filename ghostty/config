@@ -1,8 +1,9 @@
 theme = rose-pine
 theme = "Kanagawa Wave"
+theme = "catppuccin-mocha"
  
 font-feature = "+liga"
 #font-family = "Fira Code Retina"
-font-family = "Liga SFMono Nerd Font"
+#font-family = "Liga SFMono Nerd Font"
 font-style = "SemiBold"
 adjust-cell-height = 20%

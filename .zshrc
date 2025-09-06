@@ -126,6 +126,7 @@ export QT_QPA_PLATFORM=wayland
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/go/bin:$PATH"
 
+export CXXFLAGS="-I$HOME/utils"
 
 alias susp="systemctl suspend"
 alias rmp="rm"
@@ -148,6 +149,21 @@ alias vi="nvim"
 alias ta="tmux a"
 alias tmux-save="tmux run-shell ~/.config/tmux/plugins/tmux-continuum/scripts/continuum_save.sh"
 
+# sudo systemctl enable mysql   # only when needed
 alias sql="sudo mysql -u root"
 
+# Stop and disable Snap (lazy mode)
+alias stopsnap='sudo systemctl stop snapd.service snapd.socket snapd.seeded.service && sudo systemctl mask snapd.service snapd.socket snapd.seeded.service'
+
+# Start Snap when needed
+alias startsnap='sudo systemctl unmask snapd.service snapd.socket snapd.seeded.service && sudo systemctl start snapd.socket'
+
+
 bindkey -v
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$PATH:/opt/flutter/bin"
+export PATH="$HOME/flutter/bin:$PATH"
