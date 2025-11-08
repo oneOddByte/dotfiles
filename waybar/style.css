@@ -1,0 +1,132 @@
+/* -------------------- Base -------------------- */
+* {
+  font-family: "WenQuanYi Zen Hei Mono", "Fira Code", monospace;
+  font-size: 13px;
+  font-weight: 500;
+  min-height: 0;
+}
+
+#waybar {
+  background: transparent;
+  color: #cdd6f4;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* -------------------- Workspaces -------------------- */
+#workspaces {
+  margin: 0 8px;
+}
+
+#workspaces button {
+  padding: 0 10px;
+  margin: 4px 2px;
+  background: transparent;
+  color: #6c7086;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+}
+
+#workspaces button.active {
+  background: linear-gradient(
+    135deg,
+    rgba(137, 180, 250, 0.15),
+    rgba(203, 166, 247, 0.15)
+  );
+  color: #89b4fa;
+  box-shadow: 0 0 12px rgba(137, 180, 250, 0.2);
+}
+
+#workspaces button:hover {
+  background: rgba(137, 180, 250, 0.1);
+  color: #89b4fa;
+}
+
+#workspaces button.urgent {
+  background: rgba(243, 139, 168, 0.2);
+  color: #f38ba8;
+}
+
+/* -------------------- Clock -------------------- */
+#clock {
+  padding: 0 16px;
+  color: #cdd6f4;
+  font-weight: 600;
+  background: rgba(137, 180, 250, 0.18);
+  border-radius: 10px;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+
+#clock:hover {
+  background: rgba(137, 180, 250, 0.28);
+  color: #89b4fa;
+}
+
+/* -------------------- Right Modules -------------------- */
+#pulseaudio,
+#battery,
+#backlight {
+  padding: 0 12px;
+  margin: 4px 3px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+#pulseaudio {
+  color: #94e2d5;
+  background: rgba(148, 226, 213, 0.18);
+}
+
+#pulseaudio:hover {
+  background: rgba(148, 226, 213, 0.28);
+}
+
+#pulseaudio.muted {
+  color: #f38ba8;
+  background: rgba(243, 139, 168, 0.2);
+}
+
+#battery {
+  color: #f9e2af;
+  background: rgba(249, 226, 175, 0.18);
+}
+
+#battery:hover {
+  background: rgba(249, 226, 175, 0.28);
+}
+
+#battery.charging {
+  color: #a6e3a1;
+}
+
+#battery.warning:not(.charging) {
+  color: #fab387;
+  background: rgba(250, 179, 135, 0.22);
+}
+
+#battery.critical:not(.charging) {
+  color: #f38ba8;
+  background: rgba(243, 139, 168, 0.25);
+}
+
+#backlight {
+  color: #cba6f7;
+  background: rgba(203, 166, 247, 0.18);
+}
+
+#backlight:hover {
+  background: rgba(203, 166, 247, 0.28);
+}
+
+/* -------------------- Tooltips -------------------- */
+tooltip {
+  background: rgba(30, 30, 46, 0.95);
+  border: 1px solid rgba(137, 180, 250, 0.3);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+tooltip label {
+  color: #cdd6f4;
+}

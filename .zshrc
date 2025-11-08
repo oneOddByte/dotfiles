@@ -147,7 +147,8 @@ alias Dev="cd ~/Dev"
 alias Krish="cd ~/Krish"
 alias vi="nvim"
 alias ta="tmux a"
-alias tmux-save="tmux run-shell ~/.config/tmux/plugins/tmux-continuum/scripts/continuum_save.sh"
+alias tmux-save='tmux run-shell ~/.config/tmux/plugins/tmux-resurrect/scripts/save.sh'
+alias tmux-save2="tmux run-shell ~/.config/tmux/plugins/tmux-continuum/scripts/continuum_save.sh"
 
 # sudo systemctl enable mysql   # only when needed
 alias sql="sudo mysql -u root"

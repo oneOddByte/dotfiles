@@ -32,6 +32,8 @@ config_items=(
   "nvim"
   "tmux"
   "ghostty"
+  "hypr"
+  "waybar"
 )
 
 # Ensure ~/.config exists
