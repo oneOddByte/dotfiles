@@ -1,0 +1,5 @@
+pane	0-dots	0	1	:*	0	Krishanth	:/home/krish/.dotfiles/ghostty	1	nvim	:nvim config
+pane	1-grind	0	1	:*	0	Krishanth	:/home/krish/Dev/grind-101	1	tmux	:tmux run-shell /home/krish/.config/tmux/plugins/tmux-resurrect/scripts/save.sh
+window	0-dots	0	:zsh	1	:*	c740,191x37,0,0,3	:
+window	1-grind	0	:zsh	1	:*	c741,191x37,0,0,4	:
+state	1-grind	

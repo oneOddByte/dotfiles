@@ -145,19 +145,24 @@ alias q="exit"
 
 alias Dev="cd ~/Dev"
 alias Krish="cd ~/Krish"
+
 alias vi="nvim"
 alias ta="tmux a"
+
 alias tmux-save='tmux run-shell ~/.config/tmux/plugins/tmux-resurrect/scripts/save.sh'
 alias tmux-save2="tmux run-shell ~/.config/tmux/plugins/tmux-continuum/scripts/continuum_save.sh"
+
+alias sio="sioyek"
+
+alias nextwall='swww img "$(find ~/Pictures -type f | shuf -n 1)" &'
 
 # sudo systemctl enable mysql   # only when needed
 alias sql="sudo mysql -u root"
 
 # Stop and disable Snap (lazy mode)
 alias stopsnap='sudo systemctl stop snapd.service snapd.socket snapd.seeded.service && sudo systemctl mask snapd.service snapd.socket snapd.seeded.service'
-
-# Start Snap when needed
 alias startsnap='sudo systemctl unmask snapd.service snapd.socket snapd.seeded.service && sudo systemctl start snapd.socket'
+
 
 
 bindkey -v

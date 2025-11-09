@@ -1,0 +1,16 @@
+pane	0-dots	0	1	:*	0	Krishanth	:/home/krish/.dotfiles/waybar	1	nvim	:nvim .
+pane	0-dots	0	1	:*	1	Krishanth	:/home/krish/.dotfiles/waybar/scripts	0	zsh	:
+pane	0-dots	1	0	:	0	Krishanth	:/home/krish/.dotfiles/nvim	1	nvim	:nvim .
+pane	0-dots	2	0	:-	0	Krishanth	:/home/krish/.dotfiles/hypr	1	nvim	:nvim
+pane	1-grind	0	1	:*	0	Krishanth	:/home/krish/Dev/grind-101	1	zsh	:
+pane	2-stencil	0	1	:*	0	Krishanth	:/home/krish/Dev/stencil	1	zsh	:
+pane	5-notes	0	1	:*	0	Krishanth	:/home/krish/Dev/notes/os	1	nvim	:nvim .
+pane	5-notes	1	0	:-	0	Krishanth	:/home/krish/Dev/notes/malware	1	nvim	:nvim .
+window	0-dots	0	:zsh	1	:*	346c,186x35,0,0{107x35,0,0,3,78x35,108,0,15}	:
+window	0-dots	1	:zsh	0	:	c326,95x37,0,0,9	:
+window	0-dots	2	:zsh	0	:-	64f0,186x37,0,0,11	:
+window	1-grind	0	:zsh	1	:*	c741,191x37,0,0,4	:
+window	2-stencil	0	:zsh	1	:*	c743,191x37,0,0,6	:
+window	5-notes	0	:zsh	1	:*	c744,191x37,0,0,7	:
+window	5-notes	1	:zsh	0	:-	c325,95x37,0,0,8	:
+state	0-dots	

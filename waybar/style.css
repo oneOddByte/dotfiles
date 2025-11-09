@@ -1,14 +1,17 @@
 /* -------------------- Base -------------------- */
 * {
   font-family: "WenQuanYi Zen Hei Mono", "Fira Code", monospace;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   min-height: 0;
+  border: none;
 }
 
 #waybar {
-  background: transparent;
+  background: rgba(24, 24, 37, 0.85);
   color: #cdd6f4;
+  padding: 8px 12px;
+  border-radius: 12px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -66,11 +69,11 @@
 #pulseaudio,
 #battery,
 #backlight {
-  padding: 0 12px;
+  padding: 0 14px;
   margin: 4px 3px;
   border-radius: 8px;
   transition: all 0.3s ease;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 #pulseaudio {
@@ -129,4 +132,74 @@ tooltip {
 
 tooltip label {
   color: #cdd6f4;
+}
+
+/* -------------------- Media Player -------------------- */
+#custom-media,
+#mpris {
+  padding: 0 16px;
+  margin: 4px 6px;
+  border-radius: 8px;
+  background: rgba(166, 227, 161, 0.18);
+  color: #a6e3a1;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+#custom-media:hover,
+#mpris:hover {
+  background: rgba(166, 227, 161, 0.28);
+}
+
+#custom-media.paused,
+#mpris.paused {
+  background: rgba(249, 226, 175, 0.18);
+  color: #f9e2af;
+}
+
+#custom-media.stopped {
+  opacity: 0;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* -------------------- Network -------------------- */
+#network,
+#bluetooth {
+  padding: 0 14px;
+  margin: 4px 3px;
+  border-radius: 8px;
+  background: rgba(137, 180, 250, 0.18);
+  color: #89b4fa;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+#network:hover,
+#bluetooth:hover {
+  background: rgba(137, 180, 250, 0.28);
+}
+
+#network.disconnected,
+#bluetooth.disabled {
+  background: rgba(243, 139, 168, 0.2);
+  color: #f38ba8;
+}
+
+/* -------------------- System Tray -------------------- */
+#tray {
+  padding: 0 8px;
+  margin: 4px 6px;
+  border-radius: 8px;
+  background: rgba(205, 214, 244, 0.12);
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: rgba(243, 139, 168, 0.3);
 }
