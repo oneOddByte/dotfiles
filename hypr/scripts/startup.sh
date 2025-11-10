@@ -32,9 +32,15 @@ waybar &
 
 # apps
 # open on specific workspaces
-hyprctl dispatch workspace 1
+hyprctl dispatch workspace 2
 brave &
 
 sleep 0.5
-hyprctl dispatch workspace 2
+hyprctl dispatch workspace 1
 ghostty &
+
+exec-once = nm-applet &
+exec-once = blueman-applet &
+exec-once = flameshot &
+exec-once = copyq &
+

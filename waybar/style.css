@@ -8,11 +8,22 @@
 }
 
 #waybar {
-  background: rgba(24, 24, 37, 0.85);
+  /* background: rgba(24, 24, 37, 0.85); */
+  background: transparent;
   color: #cdd6f4;
   padding: 8px 12px;
   border-radius: 12px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* -------------------- Grouped Sections (Leaf Style) -------------------- */
+.modules-left,
+.modules-center,
+.modules-right {
+  background: rgba(24, 24, 37, 0.85);
+  border-radius: 12px;
+  padding: 4px 8px;
+  margin: 0 6px;
 }
 
 /* -------------------- Workspaces -------------------- */
