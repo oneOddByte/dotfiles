@@ -23,7 +23,10 @@ for i in {1..30}; do
 done
 
 # Set wallpaper
-swww img "$(find ~/Pictures -type f | shuf -n 1)" &
+WALLPAPER="$(find ~/Pictures -type f | shuf -n 1)"
+swww img "$WALLPAPER" --transition-type random --transition-fps 60 &
+mkdir -p ~/.cache
+echo "$WALLPAPER" > ~/.cache/current_wallpaper
 
 
 # waybar + autohide script
@@ -43,4 +46,9 @@ exec-once = nm-applet &
 exec-once = blueman-applet &
 exec-once = flameshot &
 exec-once = copyq &
+
+exec-once = swayidle -w \
+    timeout 300 'hyprlock' \
+    timeout 600 'hyprctl dispatch dpms off' \
+    resume 'hyprctl dispatch dpms on'
 

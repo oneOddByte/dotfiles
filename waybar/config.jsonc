@@ -51,22 +51,24 @@
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""]
     },
+
     "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "format-alt": "{icon}"
+        "format-alt": "<span size='x-large'>{icon}</span>"
     },
+
     "battery": {
         "states": {
             // "good": 95,
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon} ",
+        "format": "{capacity}% <span size='x-large'>{icon}</span> ",
         "format-charging": "{capacity}% 󰂄",
         "format-plugged": "{capacity}% ",
-        "format-alt": "{icon}",
+        "format-alt": "<span size='x-large'>{icon}</span>",
         // "format-good": "", // An empty format will hide the module
         // "format-full": ""
         "format-icons": ["", "", "", "", ""]
@@ -76,19 +78,18 @@
     },
 
 "network": {
-    "format-wifi": "{icon}",
-    "format-ethernet": "󰈀",
-    "format-disconnected": "󰖪",
+    "format-wifi": "<span size='x-large'>{icon}</span>",
+    "format-ethernet": "<span size='x-large'>󰈀</span>",
+    "format-disconnected": "<span size='x-large'>󰖪</span>",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "tooltip-format-wifi": "{essid} ({signalStrength}%)",
     "tooltip-format-ethernet": "{ifname}: {ipaddr}",
     "tooltip-format-disconnected": "Disconnected"
 },
 
-
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon}",
+        "format": "{volume}% <span font='15'>{icon}</span>",
         "format-bluetooth": "{volume}% ",
         "format-bluetooth-muted": "󰝟 ",
         "format-muted": "󰝟",
@@ -120,11 +121,11 @@
     }, 
 
     "bluetooth": {
-        "format": "󰂯",
-        "format-connected": "󰂱",
-        "format-connected-battery": "󰂱",
-        "format-disabled": "󰂲",
-        "format-off": "󰂲",
+        "format": "<span size='x-large'>󰂯</span>",
+        "format-connected": "<span size='x-large'>󰂱</span>",
+        "format-connected-battery": "<span size='x-large'>󰂱</span>",
+        "format-disabled": "<span size='x-large'>󰂲</span>",
+        "format-off": "<span size='x-large'>󰂲</span>",
         "tooltip-format": "{status}",
         "tooltip-format-connected": "{num_connections} device(s) connected\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias} {device_battery_percentage}%",
