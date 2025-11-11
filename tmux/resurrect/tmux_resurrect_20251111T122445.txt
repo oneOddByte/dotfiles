@@ -1,0 +1,18 @@
+pane	0-config	0	0	:-	0	Krishanth	:/home/krish/.dotfiles/waybar	0	nvim	:nvim .
+pane	0-config	0	0	:-	1	Krishanth	:/home/krish/.dotfiles/waybar/scripts	1	zsh	:
+pane	0-config	1	1	:*	0	Krishanth	:/home/krish/.dotfiles/hypr	0	nvim	:nvim hyprland.conf
+pane	0-config	1	1	:*	1	Krishanth	:/home/krish/.dotfiles/hypr/scripts	1	zsh	:
+pane	1-grind	0	1	:*	0	Krishanth	:/home/krish/Dev/grind-101	1	nvim	:nvim .
+pane	1-stencil	0	1	:*	0	Krishanth	:/home/krish/Dev/stencil	1	tmux	:tmux run-shell /home/krish/.config/tmux/plugins/tmux-resurrect/scripts/save.sh
+pane	3-neural_net	0	1	:*	0	Krishanth	:/home/krish/Dev/neural_net	0	nvim	:nvim .
+pane	3-neural_net	0	1	:*	1	Krishanth	:/home/krish/Dev/neural_net	1	zsh	:
+pane	5-notes	0	1	:*	0	Krishanth	:/home/krish/Dev/notes/os	1	nvim	:nvim .
+pane	5-notes	1	0	:-	0	Krishanth	:/home/krish/Dev/notes/malware	1	nvim	:nvim .
+window	0-config	0	:zsh	0	:-	c6fe,189x35,0,0{94x35,0,0,14,94x35,95,0,15}	:
+window	0-config	1	:zsh	1	:*	9002,189x37,0,0{94x37,0,0,16,94x37,95,0,20}	:
+window	1-grind	0	:zsh	1	:*	cb06,189x37,0,0,9	:
+window	1-stencil	0	:zsh	1	:*	e5b2,189x37,0,0,23	:
+window	3-neural_net	0	:zsh	1	:*	19e6,91x36,0,0[91x12,0,0,11,91x23,0,13,22]	:
+window	5-notes	0	:zsh	1	:*	61b1,189x35,0,0,12	:
+window	5-notes	1	:zsh	0	:-	61b2,189x35,0,0,13	:
+state	1-stencil	

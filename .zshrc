@@ -128,7 +128,8 @@ export PATH="$HOME/go/bin:$PATH"
 
 export CXXFLAGS="-I$HOME/utils"
 
-alias susp="systemctl suspend"
+alias sus="systemctl suspend"
+alias off="sudo poweroff"
 alias rmp="rm"
 alias rm="trash-put"
 
@@ -154,7 +155,7 @@ alias tmux-save2="tmux run-shell ~/.config/tmux/plugins/tmux-continuum/scripts/c
 
 alias sio="sioyek"
 
-alias nextwall='swww img "$(find ~/Pictures -type f | shuf -n 1)" &'
+alias nextwall='swww img "$(find ~/Pictures -type f | shuf -n 1)" --transition-type random --transition-fps 60 & '
 
 # sudo systemctl enable mysql   # only when needed
 alias sql="sudo mysql -u root"
