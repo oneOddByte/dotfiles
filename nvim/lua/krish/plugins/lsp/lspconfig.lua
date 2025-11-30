@@ -1,11 +1,23 @@
 return {
 	"neovim/nvim-lspconfig",
+
+	event = { "BufReadPre", "BufNewFile" },
+
 	dependencies = {
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		"hrsh7th/cmp-nvim-lsp",
 		"folke/neodev.nvim",
+		{
+			"williamboman/mason.nvim",
+			cmd = "Mason",
+		},
+		{
+			"williamboman/mason-lspconfig.nvim",
+			lazy = true,
+		},
+		{
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			lazy = true,
+		},
 	},
 	config = function()
 		-- Neovim Lua LSP helper

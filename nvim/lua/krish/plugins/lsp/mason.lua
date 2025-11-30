@@ -1,5 +1,7 @@
 return {
 	"williamboman/mason.nvim",
+	cmd = "Mason",
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
@@ -13,8 +15,6 @@ return {
 				"lua_ls",
 				"emmet_ls",
 				"ruff",
-				"mypy",
-				-- "yls_yara",
 			},
 			automatic_installation = true,
 		})

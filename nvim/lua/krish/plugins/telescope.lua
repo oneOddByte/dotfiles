@@ -1,13 +1,16 @@
 return {
 	"nvim-telescope/telescope.nvim",
+	cmd = "Telescope",
+	keys = { "<leader>fj", "<cmd>Telescope find_files<cr>", desc = "Fuzzy find files in cwd" },
+
 	branch = "0.1.x",
+
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-tree/nvim-web-devicons",
-		"folke/todo-comments.nvim",
-		"nvim-telescope/telescope-dap.nvim",
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	},
+
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
@@ -25,6 +28,8 @@ return {
 
 		telescope.setup({
 			defaults = {
+				-- sorting_strategy = "ascending",
+				layout_strategy = "flex",
 				path_display = { "smart" },
 				mappings = {
 					i = {
@@ -52,9 +57,9 @@ return {
 
 		-- for cpp manual using cppman
 		keymap.set("n", "<leader>fm", function()
-			local word = vim.fn.expand("<cword>")
+			local word = vim.fn.expand("<cWORD>")
 			vim.cmd("split") -- open a horizontal terminal split
-			vim.cmd("terminal cppman " .. word)
+			vim.cmd("terminal man " .. word)
 			vim.cmd("startinsert") -- auto enter insert mode in terminal
 		end, { noremap = true, silent = true, desc = "Cpp manual" })
 		-- keymap.set("n", "<leader>fD", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Find document symbols" })
@@ -75,5 +80,10 @@ return {
 		vim.keymap.set("n", "<leader>fdC", ":Telescope dap configurations<CR>", { desc = "Debug: Configurations" })
 		vim.keymap.set("n", "<leader>fdv", ":Telescope dap variables<CR>", { desc = "Debug: Variables" })
 		vim.keymap.set("n", "<leader>fdf", ":Telescope dap frames<CR>", { desc = "Debug: Frames" })
+
+		-- Load extensions SAFELY
+		-- pcall(telescope.load_extension, "fzf")
+		pcall(telescope.load_extension, "dap")
+		pcall(telescope.load_extension, "todo-comments")
 	end,
 }

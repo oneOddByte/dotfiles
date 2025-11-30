@@ -4,6 +4,7 @@ return {
 		"MunifTanjim/nui.nvim", -- If you need nui.nvim, uncomment this
 		"rcarriga/nvim-notify", -- If you need nvim-notify, uncomment this
 	},
+	event = { "VeryLazy", "CmdlineEnter" },
 	config = function()
 		require("noice").setup({
 			lsp = {

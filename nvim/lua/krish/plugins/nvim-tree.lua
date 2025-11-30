@@ -1,13 +1,13 @@
 return {
 	"nvim-tree/nvim-tree.lua",
 	dependencies = "nvim-tree/nvim-web-devicons",
-	cmd = { "NvimTreeToggle", "NvimTreeFindFile", "NvimTreeCollapse", "NvimTreeRefresh" },
-	keys = {
-		{ "<leader>ee", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file explorer" },
-		{ "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", desc = "Toggle file explorer on current file" },
-		{ "<leader>ec", "<cmd>NvimTreeCollapse<CR>", desc = "Collapse file explorer" },
-		{ "<leader>er", "<cmd>NvimTreeRefresh<CR>", desc = "Refresh file explorer" },
-	},
+	-- cmd = { "NvimTreeToggle", "NvimTreeFindFile", "NvimTreeCollapse", "NvimTreeRefresh" },
+	-- keys = {
+	-- 	{ "<leader>ee", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file explorer" },
+	-- 	{ "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", desc = "Toggle file explorer on current file" },
+	-- 	{ "<leader>ec", "<cmd>NvimTreeCollapse<CR>", desc = "Collapse file explorer" },
+	-- 	{ "<leader>er", "<cmd>NvimTreeRefresh<CR>", desc = "Refresh file explorer" },
+	-- },
 	init = function()
 		-- CRITICAL: Disable netrw immediately, before any file operations
 		vim.g.loaded_netrw = 1
@@ -56,5 +56,17 @@ return {
 				ignore = false,
 			},
 		})
+
+		vim.keymap.set("n", "<leader>fdc", ":Telescope dap commands<CR>", { desc = "Debug: Commands" })
+
+		vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+		vim.keymap.set(
+			"n",
+			"<leader>ef",
+			"<cmd>NvimTreeFindFileToggle<CR>",
+			{ desc = "Toggle file explorer on current file" }
+		)
+		vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
+		vim.keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
 	end,
 }
