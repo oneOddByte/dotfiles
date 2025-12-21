@@ -34,6 +34,9 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 		"*.m4a",
 		"*.wma",
 		"*.opus",
+		-- Files
+		"*.xlsx",
+		"*.docx",
 	},
 	callback = function()
 		local filename = vim.fn.expand("<afile>")
@@ -69,6 +72,10 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 				vim.bo.filetype = "jpeg"
 			elseif ext == "png" then
 				vim.bo.filetype = "png" -- For other image types like png, gif etc.
+			elseif ext == "xlsx" then
+				vim.bo.filetype = "xlsx"
+			elseif ext == "docx" then
+				vim.bo.filetype = "docx"
 			else
 				vim.bo.filetype = ext -- For other image types like png, gif etc.
 			end
@@ -85,6 +92,7 @@ require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/
 -- vim.cmd("colorscheme rose-pine-main")
 -- vim.cmd("colorscheme kanagawa-wave")
 vim.cmd("colorscheme catppuccin-mocha")
+-- vim.cmd("colorscheme iceclimber")
 -- vim.cmd("colorscheme lackluster")
 
 -- Your existing LSP hover handler configuration

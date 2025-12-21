@@ -140,11 +140,12 @@ alias clar="clear"
 alias clea="clear"
 
 alias zshconf="nvim ~/.zshrc"
-alias conf="cd ~/.config/nvim"
+alias conf="cd ~/.dotfiles/nvim"
 alias dots="cd ~/.dotfiles"
 alias q="exit"
 
-alias Dev="cd ~/Dev"
+alias dev="cd ~/Dev"
+alias notes="cd ~/Dev/notes"
 alias Krish="cd ~/Krish"
 
 alias vi="nvim"
@@ -164,7 +165,15 @@ alias sql="sudo mysql -u root"
 alias stopsnap='sudo systemctl stop snapd.service snapd.socket snapd.seeded.service && sudo systemctl mask snapd.service snapd.socket snapd.seeded.service'
 alias startsnap='sudo systemctl unmask snapd.service snapd.socket snapd.seeded.service && sudo systemctl start snapd.socket'
 
+alias aas='arm-none-eabi-as'
+alias ald='arm-none-eabi-ld'
 
+alias tlpstat='sudo tlp-stat -s -r -t -c -p -e'
+
+alias ftp='lftp'
+
+alias todo='vi ~/todo.md'
+alias idea='vi ~/idea.md'
 
 bindkey -v
 
@@ -174,3 +183,7 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$PATH:/opt/flutter/bin"
 export PATH="$HOME/flutter/bin:$PATH"
+
+export PATH="$HOME/.npm-global/bin:$PATH"
+
+[ -f "/home/krish/.ghcup/env" ] && . "/home/krish/.ghcup/env" # ghcup-env

@@ -1,0 +1,216 @@
+/* -------------------- Base -------------------- */
+* {
+  font-family: "WenQuanYi Zen Hei Mono", "Fira Code", monospace;
+  font-size: 15px;
+  font-weight: 500;
+  min-height: 0;
+  border: none;
+}
+
+#waybar {
+  background: rgba(24, 24, 37, 0.85);
+  background: transparent;
+  color: #cdd6f4;
+  padding: 8px 12px;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* -------------------- Grouped Sections (Leaf Style) --------------------*/
+.modules-left,
+.modules-center,
+.modules-right {
+  background: rgba(24, 24, 37, 0.85);
+  border-radius: 12px;
+  padding: 4px 8px;
+  margin: 0 6px;
+}
+
+/* -------------------- Workspaces --------------------*/
+#workspaces {
+  margin: 0 8px;
+}
+
+#workspaces button {
+  padding: 0 10px;
+  margin: 4px 2px;
+  background: transparent;
+  color: #6c7086;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+}
+
+#workspaces button.active {
+  background: linear-gradient(
+    135deg,
+    rgba(137, 180, 250, 0.15),
+    rgba(203, 166, 247, 0.15)
+  );
+  color: #89b4fa;
+  box-shadow: 0 0 12px rgba(137, 180, 250, 0.2);
+}
+
+#workspaces button:hover {
+  background: rgba(137, 180, 250, 0.1);
+  color: #89b4fa;
+}
+
+#workspaces button.urgent {
+  background: rgba(243, 139, 168, 0.2);
+  color: #f38ba8;
+}
+
+/* -------------------- Clock --------------------*/
+#clock {
+  padding: 0 16px;
+  color: #cdd6f4;
+  font-weight: 600;
+  background: rgba(137, 180, 250, 0.18);
+  border-radius: 10px;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+
+#clock:hover {
+  background: rgba(137, 180, 250, 0.28);
+  color: #89b4fa;
+}
+
+/* -------------------- Right Modules --------------------*/
+#pulseaudio,
+#battery,
+#backlight {
+  padding: 0 14px;
+  margin: 4px 3px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 15px;
+}
+
+#pulseaudio {
+  color: #94e2d5;
+  background: rgba(148, 226, 213, 0.18);
+}
+
+#pulseaudio:hover {
+  background: rgba(148, 226, 213, 0.28);
+}
+
+#pulseaudio.muted {
+  color: #f38ba8;
+  background: rgba(243, 139, 168, 0.2);
+}
+
+#battery {
+  color: #f9e2af;
+  background: rgba(249, 226, 175, 0.18);
+}
+
+#battery:hover {
+  background: rgba(249, 226, 175, 0.28);
+}
+
+#battery.charging {
+  color: #a6e3a1;
+}
+
+#battery.warning:not(.charging) {
+  color: #fab387;
+  background: rgba(250, 179, 135, 0.22);
+}
+
+#battery.critical:not(.charging) {
+  color: #f38ba8;
+  background: rgba(243, 139, 168, 0.25);
+}
+
+#backlight {
+  color: #cba6f7;
+  background: rgba(203, 166, 247, 0.18);
+}
+
+#backlight:hover {
+  background: rgba(203, 166, 247, 0.28);
+}
+
+/* -------------------- Tooltips --------------------*/
+tooltip {
+  background: rgba(30, 30, 46, 0.95);
+  border: 1px solid rgba(137, 180, 250, 0.3);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+tooltip label {
+  color: #cdd6f4;
+}
+
+/* -------------------- Media Player --------------------*/
+#custom-media,
+#mpris {
+  padding: 0 16px;
+  margin: 4px 6px;
+  border-radius: 8px;
+  background: rgba(166, 227, 161, 0.18);
+  color: #a6e3a1;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+#custom-media:hover,
+#mpris:hover {
+  background: rgba(166, 227, 161, 0.28);
+}
+
+#custom-media.paused,
+#mpris.paused {
+  background: rgba(249, 226, 175, 0.18);
+  color: #f9e2af;
+}
+
+#custom-media.stopped {
+  opacity: 0;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* -------------------- Network --------------------*/
+#network,
+#bluetooth {
+  padding: 0 14px;
+  margin: 4px 3px;
+  border-radius: 8px;
+  background: rgba(137, 180, 250, 0.18);
+  color: #89b4fa;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+#network:hover,
+#bluetooth:hover {
+  background: rgba(137, 180, 250, 0.28);
+}
+
+#network.disconnected,
+#bluetooth.disabled {
+  background: rgba(243, 139, 168, 0.2);
+  color: #f38ba8;
+}
+
+/* -------------------- System Tray -------------------- */
+#tray {
+  padding: 0 8px;
+  margin: 4px 6px;
+  border-radius: 8px;
+  background: rgba(205, 214, 244, 0.12);
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: rgba(243, 139, 168, 0.3);
+}

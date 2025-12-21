@@ -1,7 +1,7 @@
 return {
 	"williamboman/mason.nvim",
 	cmd = "Mason",
-	event = { "BufReadPre", "BufNewFile" },
+	-- event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")

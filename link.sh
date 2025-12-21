@@ -3,6 +3,7 @@ set -e
 
 DOTFILES_DIR="$HOME/.dotfiles"
 CONFIG_DIR="$HOME/.config"
+BIN_DIR="$HOME/.local/bin/"
 
 backup_and_link() {
   local src=$1
@@ -34,6 +35,12 @@ config_items=(
   "ghostty"
   "hypr"
   "waybar"
+  "wofi"
+  "rofi"
+  "eww"
+  "tasks"
+  "conky"
+  "dunst"
 )
 
 # Ensure ~/.config exists

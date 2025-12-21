@@ -34,7 +34,7 @@ while true; do
     read X Y <<< $(hyprctl cursorpos | awk '{print $1, $2}')
     if (( Y <= 2 )) && [ "$HIDDEN" -eq 1 ]; then
         start_waybar
-    elif (( Y > 30 )) && [ "$HIDDEN" -eq 0 ]; then
+    elif (( Y > 200 )) && [ "$HIDDEN" -eq 0 ]; then
         stop_waybar
     fi
 

@@ -1,0 +1,10 @@
+albert
+brave-bin
+eww-git
+neofetch
+onlyoffice-bin
+sioyek-git
+spotify
+yay
+yay-debug
+zotero

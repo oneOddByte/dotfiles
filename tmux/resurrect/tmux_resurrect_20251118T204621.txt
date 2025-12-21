@@ -1,0 +1,18 @@
+pane	0-dots	0	1	:*	0	Krishanth	:/home/krish/.dotfiles	1	tmux	:tmux run-shell /home/krish/.config/tmux/plugins/tmux-resurrect/scripts/save.sh
+pane	1-grind	0	1	:*	0	Krishanth	:/home/krish/Dev/grind-101	1	zsh	:
+pane	1-grind	0	1	:*	1	Krishanth	:/home/krish/Dev/grind-101/leetcode	0	zsh	:
+pane	2-stencil	0	1	:*	0	Krishanth	:/home/krish/Dev/stencil	1	nvim	:nvim .
+pane	3-neural_net	0	1	:*	0	Krishanth	:/home/krish/Dev/neural_net	0	zsh	:
+pane	3-neural_net	0	1	:*	1	Krishanth	:/home/krish/Dev/neural_net	1	zsh	:
+pane	4-os	0	1	:*	0	Krishanth	:/home/krish/Dev/os	1	nvim	:nvim .
+pane	4-os	0	1	:*	1	Krishanth	:/home/krish/Dev/os	0	zsh	:
+pane	5-notes	0	0	:-	0	Krishanth	:/home/krish/Dev/notes/os	1	zsh	:
+pane	5-notes	1	1	:*	0	Krishanth	:/home/krish/Dev/notes/malware/assets	1	yay	:yay -S sioyek-git
+window	0-dots	0	:zsh	1	:*	65af,189x37,0,0,10	:
+window	1-grind	0	:zsh	1	:*	0fde,189x37,0,0[189x33,0,0,1,189x3,0,34,2]	:
+window	2-stencil	0	:zsh	1	:*	cb00,189x37,0,0,3	:
+window	3-neural_net	0	:zsh	1	:*	5862,91x36,0,0[91x11,0,0,4,91x24,0,12,5]	:
+window	4-os	0	:zsh	1	:*	6cf6,189x37,0,0[189x28,0,0,6,189x8,0,29,9]	:
+window	5-notes	0	:zsh	0	:-	bd24,91x36,0,0,7	:
+window	5-notes	1	:zsh	1	:*	bd25,91x36,0,0,8	:
+state	0-dots	

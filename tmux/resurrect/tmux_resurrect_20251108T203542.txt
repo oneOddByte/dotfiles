@@ -1,5 +1,0 @@
-pane	0-dots	0	1	:*	0	Krishanth	:/home/krish/.ssh	1	zsh	:
-pane	1	0	1	:*	0	Krishanth	:/home/krish	1	tmux	:tmux run-shell /home/krish/.config/tmux/plugins/tmux-resurrect/scripts/save.sh
-window	0-dots	0	:zsh	1	:*	c31e,95x37,0,0,1	:
-window	1	0	:zsh	1	:*	c31f,95x37,0,0,2	:
-state	1	0-dots

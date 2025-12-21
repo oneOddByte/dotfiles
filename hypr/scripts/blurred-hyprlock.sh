@@ -32,11 +32,13 @@ if ! magick "$CURRENT_WALL" \
 fi
 
 # ---- 4. Run hyprlock with the blurred image ----
-hyprlock --override "background,path=$BLURRED_WALL" || {
-    rm -f "$BLURRED_WALL"
-    echo "Error: hyprlock failed" >&2
-    exit 1
-}
+hyprlock --override "
+background,path=$BLURRED_WALL;
+background,monitor=eDP-1;
+background,blur_passes=2;
+background,blur_size=4;
+background,brightness=0.75;
+"
 
 # ---- 5. Clean up temp file after unlock ----
 rm -f "$BLURRED_WALL"

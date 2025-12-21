@@ -1,6 +1,7 @@
 return {
 	"folke/todo-comments.nvim",
-	event = { "BufReadPre", "BufNewFile" },
+	-- event = { "BufReadPre", "BufNewFile" },
+	event = "VeryLazy",
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
 		local todo_comments = require("todo-comments")

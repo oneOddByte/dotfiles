@@ -1,0 +1,19 @@
+# [urgency_critical]
+#     background = "#1a1a1a"
+#     foreground = "#ffffff"
+#     timeout = 0
+# 
+# # Don't capture authentication/pairing dialogs
+# [ignore_auth]
+#     appname = "polkit-gnome-authentication-agent-1"
+#     skip_display = yes
+# 
+# [ignore_blueman]
+#     appname = "blueman"
+#     summary = "*"
+#     skip_display = yes
+# 
+# [ignore_network]
+#     appname = "nm-applet"
+#     summary = "*pairing*"
+#     skip_display = yes
