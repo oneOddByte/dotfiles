@@ -4,3 +4,4 @@ tmux/plugins/*
 .ssh/*
 !.ssh/config
 
+fonts/
