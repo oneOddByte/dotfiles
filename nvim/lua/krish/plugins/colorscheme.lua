@@ -72,6 +72,7 @@ return {
 
 	{
 		"cdmill/neomodern.nvim",
+		cmd = "CustomColorschemeNeomodern",
 		lazy = true,
 		priority = 1000,
 		config = function()

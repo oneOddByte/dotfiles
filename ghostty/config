@@ -1,3 +1,5 @@
+config-file = ~/.config/ghostty/ghostty_colors.conf
+
 font-feature = "+liga"
 #font-family = "JetBrainsMono Nerd Font"
 #font-family = "Fira Code Retina"
