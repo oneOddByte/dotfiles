@@ -174,6 +174,7 @@ alias ftp='lftp'
 
 alias todo='vi ~/todo.md'
 alias idea='vi ~/idea.md'
+alias tt='onlyoffice-desktopeditors ~/tt.xlsx'
 
 bindkey -v
 
@@ -185,5 +186,6 @@ export PATH="$PATH:/opt/flutter/bin"
 export PATH="$HOME/flutter/bin:$PATH"
 
 export PATH="$HOME/.npm-global/bin:$PATH"
+export QT_QPA_PLATFORM=xcb
 
 [ -f "/home/krish/.ghcup/env" ] && . "/home/krish/.ghcup/env" # ghcup-env

@@ -11,9 +11,17 @@ return {
 
 		mason_lspconfig.setup({
 			ensure_installed = {
+				"jdtls",
+				"black",
 				"clangd",
-				"lua_ls",
-				"emmet_ls",
+				"codelldb",
+				"debugpy",
+				"eslint_d",
+				"html-lsphtml,html",
+				"isort",
+				"lua-language-server",
+				"pylint",
+				"pyright",
 				"ruff",
 			},
 			automatic_installation = true,

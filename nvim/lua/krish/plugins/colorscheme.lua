@@ -64,8 +64,15 @@ return {
 	},
 
 	{
-		"cdmill/neomodern.nvim",
+		"folke/tokyonight.nvim",
 		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
+
+	{
+		"cdmill/neomodern.nvim",
+		lazy = true,
 		priority = 1000,
 		config = function()
 			require("neomodern").setup({
