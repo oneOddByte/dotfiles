@@ -88,13 +88,6 @@ require("krish.core")
 require("krish.lazy")
 require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
 
--- Your existing colorscheme settings
--- vim.cmd("colorscheme rose-pine-main")
--- vim.cmd("colorscheme kanagawa-wave")
-vim.cmd("colorscheme catppuccin-mocha")
--- vim.cmd("colorscheme iceclimber")
--- vim.cmd("colorscheme lackluster")
-
 -- Your existing LSP hover handler configuration
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 	border = "rounded",
@@ -115,3 +108,12 @@ vim.diagnostic.config({
 })
 
 local clients = vim.lsp.get_active_clients()
+
+-- vim.cmd("colorscheme rose-pine-main")
+-- vim.cmd("colorscheme kanagawa-wave")
+-- vim.cmd("colorscheme catppuccin-mocha")
+vim.cmd("colorscheme tokyonight-night")
+-- vim.cmd("colorscheme iceclimber")
+-- vim.cmd("colorscheme lackluster")
+
+
