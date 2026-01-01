@@ -146,6 +146,7 @@ alias q="exit"
 
 alias dev="cd ~/Dev"
 alias notes="cd ~/Dev/notes"
+alias clg="cd ~/College/"
 alias Krish="cd ~/Krish"
 
 alias vi="nvim"
@@ -157,6 +158,8 @@ alias tmux-save2="tmux run-shell ~/.config/tmux/plugins/tmux-continuum/scripts/c
 alias sio="sioyek"
 
 alias nextwall='swww img "$(find ~/Pictures -type f | shuf -n 1)" --transition-type random --transition-fps 60 & '
+alias nextwall2='swww img "$(find ~/Pictures/mountain_landscape/ -type f | shuf -n 1)" --transition-type random --transition-fps 60 & '
+
 
 # sudo systemctl enable mysql   # only when needed
 alias sql="sudo mysql -u root"

@@ -99,8 +99,6 @@ local function write_tmux_file(palette)
 
 	file:flush()
 	file:close()
-
-	print("✓ Tmux colors updated successfully")
 end
 
 local function reload_tmux()
@@ -128,16 +126,40 @@ local function generate_ghostty_theme()
 	local normal_bg = hl_color("Normal", "background") or "#1e1e2e"
 	local normal_fg = hl_color("Normal", "foreground") or "#cdd6f4"
 
-	-- Make cursor always visible by ensuring high contrast
-	local cursor_bg = hl_color("Cursor", "background") or hl_color("Visual", "background") or normal_fg -- Use foreground color as fallback for visibility
+	-- Get potential cursor colors from multiple sources
+	local cursor_candidates = {
+		hl_color("Cursor", "background"),
+		hl_color("CursorLine", "background"),
+		hl_color("Visual", "background"),
+		hl_color("IncSearch", "background"),
+		hl_color("Search", "background"),
+	}
+
+	-- Find first valid cursor color, or use a bright fallback
+	local cursor_bg = nil
+	for _, color in ipairs(cursor_candidates) do
+		if color then
+			cursor_bg = color
+			break
+		end
+	end
+
+	-- If still no cursor color, make one that's definitely visible
+	if not cursor_bg then
+		-- If background is dark, use bright color; if light, use dark
+		cursor_bg = contrast_color(normal_bg) == "#ffffff" and "#89b4fa" or "#1e1e2e"
+	end
+
+	-- Ensure cursor has maximum contrast with its background
+	local cursor_fg = contrast_color(cursor_bg)
 
 	return {
 		background = normal_bg,
 		foreground = normal_fg,
 
-		-- Cursor - always high contrast
+		-- Cursor - always high contrast and visible
 		cursor_color = cursor_bg,
-		cursor_text = contrast_color(cursor_bg),
+		cursor_text = cursor_fg,
 
 		-- Selection
 		selection_background = hl_color("Visual", "background") or "#45475a",

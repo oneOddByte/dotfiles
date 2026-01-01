@@ -54,15 +54,26 @@ return {
 		keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
 		keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find buffers" })
 		keymap.set("n", "<leader>fl", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Find document symbols" })
+		keymap.set("n", "<leader>fL", "<cmd>Telescope lsp_workspace_symbols<cr>", { desc = "Find workspace symbols" })
 
 		-- for cpp manual using cppman
-		keymap.set("n", "<leader>fm", function()
-			local word = vim.fn.expand("<cWORD>")
+		keymap.set("n", "<leader>fM", function()
+			local word = vim.fn.expand("<cword>")
 			vim.cmd("split") -- open a horizontal terminal split
 			vim.cmd("terminal man " .. word)
 			vim.cmd("startinsert") -- auto enter insert mode in terminal
 		end, { noremap = true, silent = true, desc = "Cpp manual" })
+
+		-- for man
+		keymap.set("n", "<leader>fm", function()
+			local word = vim.fn.expand("<cword>")
+			vim.cmd("split") -- open a horizontal terminal split
+			vim.cmd("terminal man " .. word)
+			vim.cmd("startinsert") -- auto enter insert mode in terminal
+		end, { noremap = true, silent = true, desc = "man page" })
+
 		-- keymap.set("n", "<leader>fD", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Find document symbols" })
+
 		keymap.set(
 			"n",
 			"<leader>fs",

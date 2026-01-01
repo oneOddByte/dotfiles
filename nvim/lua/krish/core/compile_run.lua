@@ -90,8 +90,8 @@ function M.compile_and_run()
 		return
 	elseif ext == "pdf" then
 		-- vim.fn.jobstart({ "brave-browser", file }, { detach = true })
-		-- vim.fn.jobstart({ "xdg-open", file }, { detach = true })
-		vim.fn.jobstart({ "sioyek", file }, { detach = true })
+		vim.fn.jobstart({ "xdg-open", file }, { detach = true })
+		-- vim.fn.jobstart({ "sioyek", file }, { detach = true })
 		return
 	elseif ext == "xlsx" or ext == "docx" then
 		vim.fn.jobstart("onlyoffice-desktopeditors " .. vim.fn.shellescape(file), { detach = true })

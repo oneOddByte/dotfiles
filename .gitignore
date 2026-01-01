@@ -5,3 +5,5 @@ tmux/plugins/*
 !.ssh/config
 
 fonts/
+
+tmux/resurrect/*.txt

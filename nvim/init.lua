@@ -113,7 +113,6 @@ local clients = vim.lsp.get_active_clients()
 -- vim.cmd("colorscheme kanagawa-wave")
 -- vim.cmd("colorscheme catppuccin-mocha")
 vim.cmd("colorscheme tokyonight-night")
+-- vim.cmd("colorscheme gyokuro")
 -- vim.cmd("colorscheme iceclimber")
 -- vim.cmd("colorscheme lackluster")
-
-
