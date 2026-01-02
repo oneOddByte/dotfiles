@@ -93,7 +93,7 @@ function M.compile_and_run()
 		vim.fn.jobstart({ "xdg-open", file }, { detach = true })
 		-- vim.fn.jobstart({ "sioyek", file }, { detach = true })
 		return
-	elseif ext == "xlsx" or ext == "docx" then
+	elseif ext == "xlsx" or ext == "docx" or ext == "csv" then
 		vim.fn.jobstart("onlyoffice-desktopeditors " .. vim.fn.shellescape(file), { detach = true })
 		return
 	elseif not cmd then
