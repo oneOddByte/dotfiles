@@ -37,7 +37,7 @@ waybar &
 # apps
 # open on specific workspaces
 hyprctl dispatch workspace 2
-brave &
+# brave &
 
 sleep 0.5
 hyprctl dispatch workspace 1

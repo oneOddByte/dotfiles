@@ -54,3 +54,15 @@ vim.opt.foldlevel = 99
 -- Optional: Configure fold display
 vim.opt.foldnestmax = 10 -- Maximum fold nesting level
 vim.opt.foldminlines = 1 -- Minimum lines for a fold to be displayed
+
+-- for undo tree
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
+
+-- store jumplist
+vim.opt.shada = {
+	"'200", -- store up to 200 jumps
+	"<50", -- max 50 lines per register
+	"s50", -- item size limit
+	"h", -- no hlsearch
+}

@@ -179,6 +179,8 @@ alias todo='vi ~/todo.md'
 alias idea='vi ~/idea.md'
 alias tt='onlyoffice-desktopeditors ~/tt.xlsx'
 
+alias wificon='nmcli device wifi connect'
+
 bindkey -v
 
 export NVM_DIR="$HOME/.nvm"

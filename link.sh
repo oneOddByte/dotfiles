@@ -39,6 +39,7 @@ config_items=(
   "rofi"
   "eww"
   "tasks"
+  "wireplumber"
   "conky"
   "dunst"
 )
