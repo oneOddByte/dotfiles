@@ -2,9 +2,12 @@ albert
 brave-bin
 eww-git
 neofetch
+nvidia
 onlyoffice-bin
-sioyek-git
+sioyek
+sioyek-debug
 spotify
+warp-terminal
 yay
 yay-debug
 zotero
