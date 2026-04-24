@@ -49,59 +49,89 @@ local function quit_process()
 end
 
 function M.compile_and_run()
-	-- If we're in the output window, toggle it
-	if vim.bo.filetype == "output" then
+	-- 1. Identify the file and context
+	local file
+	local filetype = vim.bo.filetype
+
+	-- Check if we are in nvim-tree
+	if filetype == "NvimTree" then
+		local api = require("nvim-tree.api")
+		local node = api.tree.get_node_under_cursor()
+
+		if not node or node.name == ".." or node.type == "directory" then
+			vim.notify("Not a valid file in NvimTree", vim.log.levels.WARN)
+			return
+		end
+		file = node.absolute_path
+	else
+		file = vim.fn.expand("%:p")
+	end
+
+	-- 2. Derived properties
+	local ext = file:match("^.+(%..+)$") and file:match("^.+(%..+)$"):sub(2):lower() or ""
+	local name = file:match("(.+)%..+$") or file -- fallback if no extension
+
+	-- 3. Immediate UI/State Checks
+	if filetype == "output" then
 		toggle_window()
 		return
 	end
 
-	-- Ignore other non-code buffers
-	if vim.bo.filetype == "log" then
-		vim.notify("CompileRun: Ignored buffer of filetype '" .. vim.bo.filetype .. "'", vim.log.levels.INFO)
+	if filetype == "log" then
+		vim.notify("CompileRun: Ignored log buffer", vim.log.levels.INFO)
 		return
 	end
 
-	-- If job already running, just toggle the output window
 	if state.job_id and vim.fn.jobwait({ state.job_id }, 0)[1] == -1 then
 		toggle_window()
 		return
 	end
 
-	local ext = vim.fn.expand("%:e")
-	local filetype = vim.bo.filetype
-	local file = vim.fn.expand("%:p")
-	local name = vim.fn.expand("%:t:r")
-
+	-- 4. Define Execution Command
 	local cmd = ({
-		c = string.format("gcc %s -o %s && ./%s", file, name, name),
-		cpp = string.format("g++ %s -o %s && ./%s", file, name, name),
-		py = "python3 " .. file,
-		java = string.format("javac %s && java %s", file, name),
-		rs = string.format("rustc %s && ./%s", file, name),
-		sh = "bash " .. file,
-		lua = "lua " .. file,
+		c = string.format(
+			"gcc %s -o %s && ./%s",
+			vim.fn.shellescape(file),
+			vim.fn.shellescape(name),
+			vim.fn.shellescape(name)
+		),
+		cpp = string.format(
+			"g++ %s -o %s && ./%s",
+			vim.fn.shellescape(file),
+			vim.fn.shellescape(name),
+			vim.fn.shellescape(name)
+		),
+		py = "python3 " .. vim.fn.shellescape(file),
+		java = string.format("javac %s && java %s", vim.fn.shellescape(file), vim.fn.shellescape(name)),
+		rs = string.format("rustc %s && ./%s", vim.fn.shellescape(file), vim.fn.shellescape(name)),
+		sh = "bash " .. vim.fn.shellescape(file),
+		lua = "lua " .. vim.fn.shellescape(file),
 	})[ext]
 
-	if not cmd and (filetype == "audio" or filetype == "video" or ext == "mp4") then
-		vim.fn.jobstart("mpv " .. vim.fn.shellescape(file), { detach = true })
-		return
-	elseif not cmd and (filetype == "png" or filetype == "jpg" or filetype == "jpeg") then
-		vim.fn.jobstart("mpv " .. vim.fn.shellescape(file) .. " --keep-open --ontop", { detach = true })
-		return
-	elseif ext == "pdf" then
-		-- vim.fn.jobstart({ "brave-browser", file }, { detach = true })
-		vim.fn.jobstart({ "xdg-open", file }, { detach = true })
-		-- vim.fn.jobstart({ "sioyek", file }, { detach = true })
-		return
-	elseif ext == "xlsx" or ext == "docx" or ext == "csv" then
-		vim.fn.jobstart("onlyoffice-desktopeditors " .. vim.fn.shellescape(file), { detach = true })
-		return
-	elseif not cmd then
-		vim.notify("Unsupported filetype: " .. ext .. " (" .. filetype .. ")", vim.log.levels.WARN)
-		return
+	-- 5. Media Handling (Images/Video/PDF)
+	local is_image = (ext == "png" or ext == "jpg" or ext == "jpeg" or ext == "webp" or ext == "gif")
+	local is_video = (ext == "mp4" or ext == "mkv" or ext == "mov")
+
+	if not cmd then
+		if is_image then
+			vim.fn.jobstart({ "mpv", "--keep-open", "--ontop", file }, { detach = true })
+			return
+		elseif is_video then
+			vim.fn.jobstart({ "mpv", file }, { detach = true })
+			return
+		elseif ext == "pdf" then
+			vim.fn.jobstart({ "xdg-open", file }, { detach = true })
+			return
+		elseif ext == "xlsx" or ext == "docx" or ext == "csv" then
+			vim.fn.jobstart({ "onlyoffice-desktopeditors", file }, { detach = true })
+			return
+		else
+			vim.notify("Unsupported filetype: " .. ext, vim.log.levels.WARN)
+			return
+		end
 	end
 
-	-- Setup buffer
+	-- 6. Setup Output Buffer (for code execution only)
 	state.buf = vim.api.nvim_create_buf(false, true)
 	state.visible = true
 	state.job_id = nil

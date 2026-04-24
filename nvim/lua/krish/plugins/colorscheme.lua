@@ -4,8 +4,8 @@ return {
 		"catppuccin/nvim",
 		cmd = "CustomColorschemeCat",
 		name = "catppuccin",
-		priority = 10000,
-		lazy = true,
+		-- priority = 10000,
+		-- lazy = true,
 		config = function()
 			require("catppuccin").setup({ flavor = "mocha" }) -- Choose flavor
 			vim.cmd("colorscheme catppuccin")

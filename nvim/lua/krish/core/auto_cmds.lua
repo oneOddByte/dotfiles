@@ -28,6 +28,28 @@ local function contrast_color(hex)
 	return (lum > 128) and "#000000" or "#ffffff"
 end
 
+-- Add this helper function after contrast_color():
+local function mute_color(hex, amount)
+	if not hex or hex == "" then
+		return hex
+	end
+
+	hex = hex:gsub("#", "")
+	local r = tonumber(hex:sub(1, 2), 16) or 0
+	local g = tonumber(hex:sub(3, 4), 16) or 0
+	local b = tonumber(hex:sub(5, 6), 16) or 0
+
+	-- Calculate grayscale value
+	local gray = r * 0.299 + g * 0.587 + b * 0.114
+
+	-- Move colors toward gray (desaturate) and darken slightly
+	r = math.floor(r * (1 - amount) + gray * amount * 0.85)
+	g = math.floor(g * (1 - amount) + gray * amount * 0.85)
+	b = math.floor(b * (1 - amount) + gray * amount * 0.85)
+
+	return string.format("#%02x%02x%02x", r, g, b)
+end
+
 -- ==========================
 -- 1. TMUX PALETTE AUTOGEN
 -- ==========================
@@ -94,11 +116,17 @@ local function write_tmux_file(palette)
 			print("WARNING: Missing color for " .. k)
 			color = "#000000"
 		end
+		-- Skip cursor-color - handled manually in main config
+		if k == "cursor_color" or k == "cursor_text" then
+			goto continue
+		end
 		file:write(string.format("set -g @color_%s '%s'\n", k, color))
+		::continue::
 	end
 
 	file:flush()
 	file:close()
+	::continue::
 end
 
 local function reload_tmux()
@@ -136,14 +164,17 @@ local function generate_ghostty_theme()
 	}
 
 	-- Find first valid cursor color, or use a bright fallback
-	local cursor_bg = nil
-	for _, color in ipairs(cursor_candidates) do
-		if color then
-			cursor_bg = color
-			break
-		end
-	end
+	-- Better cursor color logic - use a muted, visible accent
+	local cursor_bg = hl_color("Function", "foreground") -- Try function color first
+		or hl_color("Keyword", "foreground") -- Then keyword
+		or "#a8a6b8" -- Fallback to your preferred color
 
+	cursor_bg = mute_color(cursor_bg, 0.8)
+
+	-- Make it slightly muted/desaturated for comfort
+	-- If you want even more control, just hardcode it:
+
+	local cursor_fg = contrast_color(cursor_bg)
 	-- If still no cursor color, make one that's definitely visible
 	if not cursor_bg then
 		-- If background is dark, use bright color; if light, use dark
@@ -151,7 +182,9 @@ local function generate_ghostty_theme()
 	end
 
 	-- Ensure cursor has maximum contrast with its background
-	local cursor_fg = contrast_color(cursor_bg)
+	-- local cursor_fg = contrast_color(cursor_bg)
+
+	cursor_bg = "#d1d0d9"
 
 	return {
 		background = normal_bg,

@@ -1,3 +1,8 @@
+-- compat shim for nvim 0.12
+vim.fn.ft_to_lang = function(ft)
+	return vim.treesitter.language.get_lang(ft) or ft
+end
+
 return {
 	"nvim-telescope/telescope.nvim",
 	cmd = "Telescope",

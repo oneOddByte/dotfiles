@@ -8,11 +8,13 @@ font-feature = "+liga"
 #font-family = "Liga SFMono Nerd Font"
 font-style = "SemiBold"
 
+cursor-color = #a8a6b8
+
 font-size = 13
 adjust-cell-height = 20%
 
 window-padding-x = 20, 3
-window-padding-y = 10, 2
+window-padding-y = 10, 0
 
 #theme = rose-pine
 #theme = "Kanagawa Wave"

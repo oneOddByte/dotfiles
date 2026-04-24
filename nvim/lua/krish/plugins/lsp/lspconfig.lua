@@ -3,6 +3,7 @@ return {
 
 	-- event = { "BufReadPre", "BufNewFile" },
 	event = "VeryLazy",
+	cmd = { "LspInfo" },
 
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
@@ -62,6 +63,13 @@ return {
 						flags = {
 							debounce_text_changes = 150,
 						},
+					})
+				elseif server_name == "ruff" then
+					lspconfig.ruff.setup({
+						capabilities = capabilities,
+						on_init = function(client)
+							client.offset_encoding = "utf-16"
+						end,
 					})
 				elseif server_name == "sqls" then
 					lspconfig.sqls.setup({

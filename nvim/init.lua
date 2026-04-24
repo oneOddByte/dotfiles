@@ -3,6 +3,11 @@ local vim = vim
 -- This is often handled by plugin managers like lazy.nvim, but good to be explicit.
 vim.cmd("filetype plugin indent on")
 
+-- at the very top, before require("lazy") or anything else
+vim.fn.ft_to_lang = function(ft)
+	return vim.treesitter.language.get_lang(ft) or ft
+end
+
 -- Autocmd to explicitly set filetype for common image extensions.
 -- This runs *before* the buffer is read, ensuring the filetype is set early.
 vim.api.nvim_create_autocmd("BufReadPre", {
@@ -89,14 +94,22 @@ require("krish.lazy")
 require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
 
 -- Your existing LSP hover handler configuration
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = "rounded",
-	focusable = false,
-	max_width = 80,
-	max_height = 20,
-	offset_x = 0,
-	offset_y = 1,
-})
+vim.lsp.handlers["textDocument/hover"] = function(err, result, ctx, config)
+	config = vim.tbl_deep_extend("force", config or {}, {
+		border = "rounded",
+		focusable = false,
+		max_width = 80,
+		max_height = 20,
+		offset_x = 0,
+		offset_y = 1,
+	})
+	vim.lsp.handlers.hover(err, result, ctx, config)
+end
+
+-- Alternatively, if using a modern Neovim version (0.10+):
+vim.ui.open = function(path)
+	vim.fn.jobstart({ "xdg-open", path }, { detach = true })
+end
 
 -- Your existing diagnostic configuration
 vim.diagnostic.config({
@@ -107,11 +120,12 @@ vim.diagnostic.config({
 	severity_sort = true,
 })
 
-local clients = vim.lsp.get_active_clients()
+local clients = vim.lsp.get_clients()
 
+-- vim.cmd("colorscheme gruvbox-material")
 -- vim.cmd("colorscheme rose-pine-main")
-vim.cmd("colorscheme rose-pine-moon")
--- vim.cmd("colorscheme kanagawa-wave")
+-- vim.cmd("colorscheme rose-pine-moon")
+vim.cmd("colorscheme kanagawa-wave")
 -- vim.cmd("colorscheme catppuccin-mocha")
 -- vim.cmd("colorscheme tokyonight-night")
 -- vim.cmd("colorscheme gyokuro")

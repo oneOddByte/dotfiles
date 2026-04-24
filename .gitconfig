@@ -3,3 +3,5 @@
 [user]
 	email = krishanth.k2006@gmail.com
 	name = Krishanth K
+[init]
+	defaultBranch = main
