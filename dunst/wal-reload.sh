@@ -35,7 +35,6 @@ def build_color_block(bg, fg, dim, accent, accent2, muted):
     frame_color = "{muted}"
     highlight = "{muted}"
     timeout = 4
-    default_icon = dialog-information
 
 [urgency_normal]
     background = "{bg}"
@@ -43,7 +42,6 @@ def build_color_block(bg, fg, dim, accent, accent2, muted):
     frame_color = "{accent}"
     highlight = "{accent}"
     timeout = 6
-    default_icon = dialog-information
 
 [urgency_critical]
     background = "{bg}"
@@ -51,7 +49,6 @@ def build_color_block(bg, fg, dim, accent, accent2, muted):
     frame_color = "{accent2}"
     highlight = "{accent2}"
     timeout = 0
-    default_icon = dialog-warning
 
 # WAL_COLORS_END"""
 

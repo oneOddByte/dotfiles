@@ -7,6 +7,7 @@ if [ -f "$FLAG" ]; then
     pkill waybar
 else
     touch "$FLAG"
-    waybar &
+    # regenerate colors.css from latest pywal palette before starting
+    wal -R -s -o ~/.config/waybar/wal-reload.sh -o ~/.config/dunst/wal-reload.sh
 fi
 

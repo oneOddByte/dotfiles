@@ -70,22 +70,22 @@
 # WAL_COLORS_START
 
 [urgency_low]
-    background = "#020202"
-    foreground = "#a49a93"
-    frame_color = "#7D7781"
-    highlight = "#7D7781"
+    background = "#091019"
+    foreground = "#788586"
+    frame_color = "#3E7380"
+    highlight = "#3E7380"
     timeout = 4
 
 [urgency_normal]
-    background = "#020202"
-    foreground = "#ebdcd3"
-    frame_color = "#E6A571"
-    highlight = "#E6A571"
+    background = "#091019"
+    foreground = "#acbfc0"
+    frame_color = "#6A807F"
+    highlight = "#6A807F"
     timeout = 6
 
 [urgency_critical]
-    background = "#020202"
-    foreground = "#ebdcd3"
+    background = "#091019"
+    foreground = "#acbfc0"
     frame_color = "#ff5555"
     highlight = "#ff5555"
     timeout = 0
