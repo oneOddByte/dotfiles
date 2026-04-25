@@ -16,13 +16,79 @@
 }
 
 /* ── Grouped pill sections ──────────────────────────────────────────────── */
-.modules-left,
-.modules-center,
-.modules-right {
+
+/* left: transparent wrapper — each child gets its own pill below */
+.modules-left {
+  background: transparent;
+  padding: 0;
+  margin: 0 6px;
+}
+
+/* center keeps outer pill */
+.modules-center {
   background: @wal_bg_module;
   border-radius: 12px;
   padding: 4px 8px;
   margin: 0 6px;
+}
+
+/* right: transparent wrapper — groups handle their own pills */
+.modules-right {
+  background: transparent;
+  padding: 0;
+  margin: 0 6px;
+}
+
+/* ── Right-side group pills ─────────────────────────────────────────────── */
+#system,
+#av,
+#connectivity {
+  background: @wal_bg_module;
+  border-radius: 12px;
+  padding: 8px 8px;
+  margin: 0 4px;
+}
+
+/* modules inside groups: flat by default */
+#system #tray,
+#system #idle_inhibitor,
+#system #custom-stats,
+#av #pulseaudio,
+#av #backlight,
+#connectivity #network,
+#connectivity #bluetooth,
+#connectivity #battery,
+#connectivity #custom-power {
+  background: transparent;
+  border-radius: 0;
+  margin: 0 2px 0 8px;
+  padding: 0 6px;
+}
+
+/* ── Nested inner pills ─────────────────────────────────────────────────── */
+#connectivity #battery,
+#av #pulseaudio,
+#system #tray,
+#system #custom-stats {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  padding: 0 10px;
+}
+
+/* window title — own pill so it fully collapses when hidden */
+#window {
+  background: @wal_bg_module;
+  border-radius: 12px;
+  padding: 4px 12px;
+  margin: 0 4px;
+}
+
+/* media group (clock + mpris) — own pill */
+#media {
+  background: @wal_bg_module;
+  border-radius: 12px;
+  padding: 4px 8px;
+  margin: 0 4px;
 }
 
 /* ── Workspaces ─────────────────────────────────────────────────────────── */
@@ -34,19 +100,19 @@
   padding: 0 10px;
   margin: 0 2px;
   background: transparent;
-  color: @wal_muted;
+  color: rgba(255, 255, 255, 0.4);
   border-radius: 8px;
 }
 
 #workspaces button.active {
-  background: @wal_accent_soft;
-  color: @wal_accent;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.95);
   font-weight: 700;
 }
 
 #workspaces button:hover {
-  background: @wal_accent_soft;
-  color: @wal_accent;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 #workspaces button.urgent {
@@ -57,7 +123,7 @@
 /* ── Clock ──────────────────────────────────────────────────────────────── */
 #clock {
   padding: 0 16px;
-  margin: 0 2px;
+  margin: 4px 2px;
   color: @wal_accent;
   font-weight: 600;
   background: @wal_accent_soft;
@@ -70,7 +136,6 @@
 
 /* ── Window title ───────────────────────────────────────────────────────── */
 #window {
-  padding: 0 12px;
   color: @wal_dim;
   font-style: italic;
 }
@@ -85,7 +150,7 @@
 /* ── Media player ───────────────────────────────────────────────────────── */
 #mpris {
   padding: 0 14px;
-  margin: 0 3px;
+  margin: 4px 3px;
   border-radius: 8px;
   background: @wal_muted_soft;
   color: @wal_fg;
@@ -122,7 +187,7 @@
 /* ── Stats (CPU + RAM combined) ─────────────────────────────────────────── */
 #custom-stats {
   padding: 0 12px;
-  margin: 0 2px;
+  margin: 4px 2px;
   border-radius: 8px;
   color: @wal_dim;
   background: @wal_dim_soft;
@@ -146,7 +211,7 @@
 /* ── Pulseaudio ─────────────────────────────────────────────────────────── */
 #pulseaudio {
   padding: 0 14px;
-  margin: 0 3px;
+  margin: 4px 3px;
   border-radius: 8px;
   color: @wal_fg;
   background: @wal_fg_soft;
@@ -164,7 +229,7 @@
 /* ── Backlight ──────────────────────────────────────────────────────────── */
 #backlight {
   padding: 0 14px;
-  margin: 0 3px;
+  margin: 4px 3px;
   border-radius: 8px;
   color: @wal_fg;
   background: @wal_dim_soft;
@@ -179,7 +244,7 @@
 #network,
 #bluetooth {
   padding: 0 14px;
-  margin: 0 3px;
+  margin: 4px 3px;
   border-radius: 8px;
   color: @wal_fg;
   background: @wal_accent_soft;
@@ -200,7 +265,7 @@
 /* ── Battery ────────────────────────────────────────────────────────────── */
 #battery {
   padding: 0 14px;
-  margin: 0 3px;
+  margin: 4px 3px;
   border-radius: 8px;
   color: @wal_fg;
   background: @wal_fg_soft;
@@ -235,7 +300,7 @@
 /* ── Idle inhibitor ─────────────────────────────────────────────────────── */
 #idle_inhibitor {
   padding: 0 12px;
-  margin: 0 2px;
+  margin: 4px 2px;
   border-radius: 8px;
   color: @wal_muted;
   background: transparent;
@@ -249,7 +314,7 @@
 /* ── Tray ───────────────────────────────────────────────────────────────── */
 #tray {
   padding: 0 8px;
-  margin: 0 4px;
+  margin: 4px 4px;
   border-radius: 8px;
   background: @wal_dim_soft;
 }
@@ -265,8 +330,8 @@
 
 /* ── Power button ───────────────────────────────────────────────────────── */
 #custom-power {
-  padding: 0 16px;
-  margin: 0 2px 0 8px;
+  padding: 0 10px;
+  margin: 0 2px 0 24px;
   border-radius: 8px;
   color: @wal_muted;
   background: transparent;

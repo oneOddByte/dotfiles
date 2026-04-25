@@ -12,11 +12,16 @@
     "padding": 2,
     "mode": "dock",
 
-    "modules-left":   ["hyprland/window", "clock", "mpris"],
+    "modules-left":   ["hyprland/window", "group/media"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right":  ["tray", "idle_inhibitor", "custom/stats", "pulseaudio", "backlight", "network", "bluetooth", "battery", "custom/power"],
+    "modules-right":  ["group/system", "group/av", "group/connectivity"],
 
     // ── Left ──────────────────────────────────────────────────────────────
+
+    "group/media": {
+        "orientation": "horizontal",
+        "modules": ["clock", "mpris"]
+    },
 
     "hyprland/window": {
         "format": "{}",
@@ -56,6 +61,21 @@
     },
 
     // ── Right ─────────────────────────────────────────────────────────────
+
+    "group/system": {
+        "orientation": "horizontal",
+        "modules": ["tray", "idle_inhibitor", "custom/stats"]
+    },
+
+    "group/av": {
+        "orientation": "horizontal",
+        "modules": ["pulseaudio", "backlight"]
+    },
+
+    "group/connectivity": {
+        "orientation": "horizontal",
+        "modules": ["network", "bluetooth", "battery", "custom/power"]
+    },
 
     "idle_inhibitor": {
         "format": "{icon}",
