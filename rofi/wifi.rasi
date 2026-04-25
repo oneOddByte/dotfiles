@@ -1,0 +1,98 @@
+/*
+ * WiFi Menu Theme — self-contained, pywal colors injected at runtime via -theme-str
+ */
+
+* {
+    bg:               #1a1426;
+    bg-alt:           #2d2438;
+    fg:               #9d8ba8;
+    active:           #ff6b8a;
+
+    font:             "Cascadia Code NF 13";
+    border:           0;
+    margin:           0;
+    padding:          0;
+    spacing:          0;
+    background-color: @bg;
+    text-color:       @fg;
+}
+
+configuration {
+    show-icons:       false;
+    font:             "Cascadia Code NF 13";
+    kb-row-down:      "Down,j";
+    kb-row-up:        "Up,k";
+    kb-accept-entry:  "Return,KP_Enter";
+    kb-entry-clear:   "slash";
+}
+
+window {
+    location:         center;
+    anchor:           center;
+    width:            520px;
+    border-radius:    8px;
+    background-color: @bg;
+}
+
+mainbox {
+    children:         [ inputbar, listview ];
+    background-color: transparent;
+}
+
+inputbar {
+    background-color: @bg;
+    border-bottom:    2px solid;
+    border-color:     @active;
+    children:         [ prompt, entry ];
+    border-radius:    8px 8px 0px 0px;
+}
+
+prompt {
+    background-color: inherit;
+    text-color:       @active;
+    padding:          10px 12px;
+    font:             "Cascadia Code NF Bold 13";
+}
+
+entry {
+    background-color: inherit;
+    text-color:       @fg;
+    padding:          10px 6px;
+    placeholder:      "Search…";
+    placeholder-color: @fg;
+}
+
+listview {
+    lines:            8;
+    scrollbar:        false;
+    padding:          6px;
+    spacing:          4px;
+    background-color: @bg;
+}
+
+element {
+    padding:          8px 12px;
+    border-radius:    4px;
+    background-color: transparent;
+    text-color:       @fg;
+    cursor:           pointer;
+    children:         [ element-icon, element-text ];
+}
+
+element-icon {
+    background-color: transparent;
+    size:             1em;
+    padding:          0px 10px 0px 0px;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+    vertical-align:   0.5;
+}
+
+element selected.normal {
+    background-color: @active;
+    text-color:       @bg;
+    border-radius:    4px;
+}
