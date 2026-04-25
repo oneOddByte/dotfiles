@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+
+import subprocess
+import os
+import json
+
+CONFIG_DIR = os.environ.get("XDG_CONFIG_HOME", os.path.expanduser("~/.config"))
+THEME = f"{CONFIG_DIR}/rofi/power-menu.rasi"
+
+OPTIONS = [
+    ("󰤄", ["systemctl", "suspend"]),
+    ("󰐥", ["systemctl", "poweroff"]),
+    ("󰜉", ["systemctl", "reboot"]),
+    ("󰗽", ["hyprctl", "dispatch", "exit"]),
+]
+
+# def get_uptime() -> str:
+#     result = subprocess.run(["uptime", "-p"], capture_output=True, text=True)
+#     return result.stdout.strip().replace("up ", "")
+
+
+def get_wal_colors() -> str:
+    """Read pywal colors and return a rofi theme-str override."""
+    wal_json = os.path.expanduser("~/.cache/wal/colors.json")
+    try:
+        with open(wal_json) as f:
+            wal = json.load(f)
+        bg     = wal["special"]["background"]
+        fg     = wal["special"]["foreground"]
+        active = wal["colors"]["color2"]   # main accent
+        bg_alt = wal["colors"]["color8"]   # dim mid-tone for button bg
+        return (
+            f"* {{ bg: {bg}; bg-alt: {bg_alt}; fg: {fg}; "
+            f"fg-alt: {fg}; active: {active}; "
+            f"background-color: {bg}; text-color: {fg}; }}"
+        )
+    except Exception:
+        return ""  # fall back to theme defaults
+
+
+def main_menu() -> str:
+    menu = "\n".join(icon for icon, _ in OPTIONS)
+    # uptime = get_uptime()
+    wal_colors = get_wal_colors()
+    cmd = [
+        "rofi",
+        "-dmenu",
+        "-selected-row", "-1",
+        # "-p", f"Uptime: {uptime}",
+        # "-mesg", f"Uptime: {uptime}",
+        "-theme", THEME,
+    ]
+    if wal_colors:
+        cmd += ["-theme-str", wal_colors]
+    result = subprocess.run(cmd, input=menu, capture_output=True, text=True)
+    return result.stdout.strip()
+
+
+def power():
+    selected = main_menu()
+    if not selected:
+        return
+
+    for icon, cmd in OPTIONS:
+        if selected == icon:
+            subprocess.run(cmd)
+            return
+
+
+if __name__ == "__main__":
+    power()

@@ -1,0 +1,93 @@
+/*
+ * Power Menu Theme
+ * Self-contained — no external imports needed.
+ */
+
+* {
+    border:           0;
+    margin:           0;
+    padding:          0;
+    spacing:          0;
+
+    bg:               #1a1426;
+    bg-alt:           #2d2438;
+    fg:               #9d8ba8;
+    fg-alt:           #e8b4c8;
+    active:           #ff6b8a;
+
+    font:             "Cascadia Code NF 28";
+    background-color: @bg;
+    text-color:       @fg;
+}
+
+configuration {
+    show-icons:   false;
+    font:         "Cascadia Code NF 28";
+    hover-select: true;
+    me-select-entry: "";
+    me-accept-entry: ["MousePrimary"];
+}
+
+window {
+    location:         center;
+    anchor:           center;
+    width:            320px;
+    border:           0px solid;
+    border-radius:    8px;
+    background-color: @bg;
+}
+
+mainbox {
+    spacing:          0px;
+    padding:          0px;
+    background-color: transparent;
+    children:         [ "message", "listview" ];
+}
+
+message {
+    padding:          10px;
+    background-color: @bg-alt;
+    text-color:       @fg;
+}
+
+textbox {
+    background-color: inherit;
+    text-color:       inherit;
+    vertical-align:   0.5;
+    horizontal-align: 0.5;
+    markup:           true;
+}
+
+listview {
+    columns:          2;
+    lines:            2;
+    cycle:            true;
+    scrollbar:        false;
+    layout:           vertical;
+    fixed-height:     true;
+    fixed-columns:    true;
+    spacing:          10px;
+    padding:          10px;
+    background-color: @bg;
+}
+
+element {
+    padding:          15px 0px;
+    border-radius:    6px;
+    background-color: @active;
+    text-color:       @bg;
+    cursor:           pointer;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+    cursor:           inherit;
+    vertical-align:   0.5;
+    horizontal-align: 0.5;
+}
+
+element selected.normal {
+    background-color: @fg-alt;
+    text-color:       @bg;
+}

@@ -90,13 +90,13 @@ function M.compile_and_run()
 	-- 4. Define Execution Command
 	local cmd = ({
 		c = string.format(
-			"gcc %s -o %s && ./%s",
+			"gcc %s -o %s && %s",
 			vim.fn.shellescape(file),
 			vim.fn.shellescape(name),
 			vim.fn.shellescape(name)
 		),
 		cpp = string.format(
-			"g++ %s -o %s && ./%s",
+			"g++ %s -o %s && %s",
 			vim.fn.shellescape(file),
 			vim.fn.shellescape(name),
 			vim.fn.shellescape(name)

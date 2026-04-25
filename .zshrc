@@ -60,7 +60,7 @@ alias tmux-save2="tmux run-shell ~/.config/tmux/plugins/tmux-continuum/scripts/c
 
 alias sio="sioyek"
 
-alias nextwall='awww img "$(find ~/Pictures -type f | shuf -n 1)" --transition-type random --transition-fps 60 & '
+alias nextwall='~/.config/hypr/scripts/wall-engine.sh'
 alias nextwall2='awww img "$(find ~/Pictures/mountain_landscape/ -type f | shuf -n 1)" --transition-type random --transition-fps 60 & '
 
 
