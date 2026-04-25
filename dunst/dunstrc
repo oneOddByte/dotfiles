@@ -1,19 +1,110 @@
-# [urgency_critical]
-#     background = "#1a1a1a"
-#     foreground = "#ffffff"
-#     timeout = 0
-# 
-# # Don't capture authentication/pairing dialogs
-# [ignore_auth]
-#     appname = "polkit-gnome-authentication-agent-1"
-#     skip_display = yes
-# 
-# [ignore_blueman]
-#     appname = "blueman"
-#     summary = "*"
-#     skip_display = yes
-# 
-# [ignore_network]
-#     appname = "nm-applet"
-#     summary = "*pairing*"
-#     skip_display = yes
+[global]
+    ### Display ###
+    monitor = 0
+    follow = mouse
+
+    ### Geometry ###
+    origin = top-right
+    offset = (15, 50)
+    width = (250, 420)
+    height = (50, 300)
+    notification_limit = 5
+    gap_size = 8
+
+    ### Progress bar ###
+    progress_bar = true
+    progress_bar_height = 6
+    progress_bar_frame_width = 0
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+    progress_bar_corner_radius = 3
+
+    ### Appearance ###
+    transparency = 5
+    padding = 14
+    horizontal_padding = 16
+    text_icon_padding = 12
+    frame_width = 2
+    corner_radius = 10
+    icon_corner_radius = 6
+
+    ### Text ###
+    font = Cascadia Code NF 11
+    line_height = 3
+    markup = full
+    # %a = appname  %s = summary (title)  %b = body  %n = newline
+    format = <span size='x-small' foreground='#888888'>%a</span>\n<b>%s</b>\n%b
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 120
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = no
+    word_wrap = yes
+
+    ### Icons ###
+    enable_recursive_icon_lookup = true
+    icon_theme = Adwaita
+    icon_position = left
+    min_icon_size = 36
+    max_icon_size = 52
+
+    ### History ###
+    sticky_history = yes
+    history_length = 20
+
+    ### Actions ###
+    dmenu = /usr/bin/rofi -dmenu -p "Action" -theme ~/.config/rofi/dunst-action.rasi
+    browser = /usr/bin/xdg-open
+    mouse_left_click = do_action, close_current
+    mouse_right_click = context
+    mouse_middle_click = close_current
+
+    ### Misc ###
+    title = Dunst
+    class = Dunst
+
+# ── Urgency levels — colors auto-updated by dunst/wal-reload.sh ─────────────
+# WAL_COLORS_START
+
+[urgency_low]
+    background = "#020202"
+    foreground = "#a49a93"
+    frame_color = "#7D7781"
+    highlight = "#7D7781"
+    timeout = 4
+    default_icon = dialog-information
+
+[urgency_normal]
+    background = "#020202"
+    foreground = "#ebdcd3"
+    frame_color = "#E6A571"
+    highlight = "#E6A571"
+    timeout = 6
+    default_icon = dialog-information
+
+[urgency_critical]
+    background = "#020202"
+    foreground = "#ebdcd3"
+    frame_color = "#ff5555"
+    highlight = "#ff5555"
+    timeout = 0
+    default_icon = dialog-warning
+
+# WAL_COLORS_END
+
+# ── App rules ────────────────────────────────────────────────────────────────
+
+[screenshots]
+    appname = "grim"
+    timeout = 3
+
+[bluetooth]
+    appname = "blueman"
+    timeout = 0
+
+[wifi]
+    appname = "WiFi Manager"
+    timeout = 4

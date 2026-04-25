@@ -1,0 +1,79 @@
+/*
+ * Dunst action picker — minimal, matches the rest of the rofi setup.
+ * Colors are hardcoded to the pywal palette; update when wallpaper changes.
+ */
+
+* {
+    bg:               #020202;
+    fg:               #ebdcd3;
+    active:           #E6A571;
+
+    font:             "Cascadia Code NF 12";
+    border:           0;
+    margin:           0;
+    padding:          0;
+    spacing:          0;
+    background-color: @bg;
+    text-color:       @fg;
+}
+
+window {
+    location:         center;
+    anchor:           center;
+    width:            280px;
+    border:           1px solid;
+    border-color:     @active;
+    border-radius:    8px;
+    background-color: @bg;
+}
+
+mainbox {
+    children:         [ inputbar, listview ];
+    background-color: transparent;
+}
+
+inputbar {
+    background-color: @bg;
+    border-bottom:    1px solid;
+    border-color:     @active;
+    children:         [ prompt ];
+    padding:          8px 12px;
+}
+
+prompt {
+    background-color: transparent;
+    text-color:       @active;
+}
+
+entry {
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+listview {
+    lines:            5;
+    scrollbar:        false;
+    padding:          6px;
+    spacing:          2px;
+    background-color: @bg;
+}
+
+element {
+    padding:          8px 12px;
+    border-radius:    4px;
+    background-color: transparent;
+    text-color:       @fg;
+    cursor:           pointer;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+    vertical-align:   0.5;
+}
+
+element selected.normal {
+    background-color: @active;
+    text-color:       @bg;
+    border-radius:    4px;
+}
