@@ -11,5 +11,6 @@ if [ -f "$FLAG" ]; then
     pkill waybar          # hide immediately; autohide will re-show on hover
     sleep 0.5             # debounce so a quick re-press doesn't re-pin
 else
-    touch "$FLAG"         # autohide.sh will start/keep waybar visible
+    ~/.config/waybar/wal-reload.sh  # refresh colors.css from cached palette
+    touch "$FLAG"                   # autohide.sh will start waybar with fresh colors
 fi
