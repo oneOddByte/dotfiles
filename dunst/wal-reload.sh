@@ -16,7 +16,7 @@ WAL_JSON = os.path.expanduser("~/.cache/wal/colors.json")
 def load_colors():
     with open(WAL_JSON) as f:
         wal = json.load(f)
-    bg      = wal["special"]["background"]
+    bg      = "#0d0d0d"                 # always dark — guaranteed readability
     fg      = wal["special"]["foreground"]
     dim     = wal["colors"]["color8"]   # muted mid-tone
     accent  = wal["colors"]["color2"]   # main accent (frame_color normal)

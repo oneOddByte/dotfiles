@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Reads pywal colors and regenerates waybar/colors.css, then restarts waybar.
+Reads pywal colors and regenerates waybar/colors.css.
+Pass --restart to also kill and relaunch waybar (used by walset).
 """
 
 import json
@@ -70,12 +71,16 @@ def restart_waybar():
 
 
 if __name__ == "__main__":
+    import sys
     try:
         colors = load_colors()
         css = build_css(colors)
         with open(COLORS_CSS, "w") as f:
             f.write(css)
-        restart_waybar()
-        print("waybar reloaded with new pywal colors.")
+        if "--restart" in sys.argv:
+            restart_waybar()
+            print("waybar reloaded with new pywal colors.")
+        else:
+            print("waybar colors.css updated.")
     except Exception as e:
         print(f"wal-reload: {e}")
