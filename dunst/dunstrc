@@ -33,7 +33,7 @@
     line_height = 3
     markup = full
     # %a = appname  %s = summary (title)  %b = body  %n = newline
-    format = <span size='x-small' foreground='#888888'>%a</span>\n<b>%s</b>\n%b
+    format = <span size='x-small' alpha='60%%'>%a</span>\n<b>%s</b>\n%b
     alignment = left
     vertical_alignment = center
     show_age_threshold = 120
@@ -75,7 +75,6 @@
     frame_color = "#7D7781"
     highlight = "#7D7781"
     timeout = 4
-    default_icon = dialog-information
 
 [urgency_normal]
     background = "#020202"
@@ -83,7 +82,6 @@
     frame_color = "#E6A571"
     highlight = "#E6A571"
     timeout = 6
-    default_icon = dialog-information
 
 [urgency_critical]
     background = "#020202"
@@ -91,7 +89,6 @@
     frame_color = "#ff5555"
     highlight = "#ff5555"
     timeout = 0
-    default_icon = dialog-warning
 
 # WAL_COLORS_END
 
