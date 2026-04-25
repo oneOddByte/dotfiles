@@ -1,186 +1,257 @@
-/* -------------------- Base -------------------- */
+@import "./colors.css";
+
+/* ── Base ───────────────────────────────────────────────────────────────── */
 * {
-  font-family: "WenQuanYi Zen Hei Mono", "Fira Code", monospace;
+  font-family: "Cascadia Code NF", "Symbols Nerd Font Mono", "Noto Sans", monospace;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   min-height: 0;
   border: none;
+  transition: all 0.2s ease;
 }
 
 #waybar {
   background: transparent;
-  color: #ffffff;
-  padding: 4px 8px;
-  transition: all 0.3s ease;
+  color: @wal_fg;
 }
 
-/* -------------------- Grouped Sections -------------------- */
+/* ── Grouped pill sections ──────────────────────────────────────────────── */
 .modules-left,
 .modules-center,
 .modules-right {
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 8px;
-  padding: 2px 6px;
-  margin: 0 4px;
+  background: @wal_bg_module;
+  border-radius: 12px;
+  padding: 4px 8px;
+  margin: 0 6px;
 }
 
-/* -------------------- Workspaces -------------------- */
+/* ── Workspaces ─────────────────────────────────────────────────────────── */
 #workspaces {
   margin: 0 4px;
 }
 
 #workspaces button {
-  padding: 0 8px;
-  margin: 2px 1px;
+  padding: 0 10px;
+  margin: 0 2px;
   background: transparent;
-  color: #888888;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  color: @wal_muted;
+  border-radius: 8px;
 }
 
 #workspaces button.active {
-  background: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
+  background: @wal_accent_soft;
+  color: @wal_accent;
+  font-weight: 700;
 }
 
 #workspaces button:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #cccccc;
+  background: @wal_accent_soft;
+  color: @wal_accent;
 }
 
 #workspaces button.urgent {
-  background: rgba(255, 70, 70, 0.3);
-  color: #ff6666;
+  background: @wal_red_soft;
+  color: @wal_red;
 }
 
-/* -------------------- Clock -------------------- */
+/* ── Clock ──────────────────────────────────────────────────────────────── */
 #clock {
-  padding: 0 12px;
-  color: #ffffff;
-  background: transparent;
-  transition: all 0.2s ease;
+  padding: 0 16px;
+  margin: 0 2px;
+  color: @wal_accent;
+  font-weight: 600;
+  background: @wal_accent_soft;
+  border-radius: 10px;
 }
 
 #clock:hover {
-  color: #cccccc;
+  background: @wal_accent_hover;
 }
 
-/* -------------------- Right Modules -------------------- */
-#pulseaudio,
-#battery,
-#backlight {
-  padding: 0 10px;
-  margin: 0 2px;
-  transition: all 0.2s ease;
-  font-size: 14px;
-}
-
-#pulseaudio {
-  color: #ffffff;
-}
-
-#pulseaudio:hover {
-  color: #cccccc;
-}
-
-#pulseaudio.muted {
-  color: #666666;
-}
-
-#battery {
-  color: #ffffff;
-}
-
-#battery:hover {
-  color: #cccccc;
-}
-
-#battery.charging {
-  color: #88ff88;
-}
-
-#battery.warning:not(.charging) {
-  color: #ffaa44;
-}
-
-#battery.critical:not(.charging) {
-  color: #ff4444;
-}
-
-#backlight {
-  color: #ffffff;
-}
-
-#backlight:hover {
-  color: #cccccc;
-}
-
-/* -------------------- Tooltips -------------------- */
-tooltip {
-  background: rgba(0, 0, 0, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  padding: 8px;
-}
-
-tooltip label {
-  color: #ffffff;
-}
-
-/* -------------------- Media Player -------------------- */
-#custom-media,
-#mpris {
+/* ── Window title ───────────────────────────────────────────────────────── */
+#window {
   padding: 0 12px;
-  margin: 0 4px;
-  background: transparent;
-  color: #ffffff;
-  font-size: 13px;
-  transition: all 0.2s ease;
+  color: @wal_dim;
+  font-style: italic;
 }
 
-#custom-media:hover,
-#mpris:hover {
-  color: #cccccc;
-}
-
-#custom-media.paused,
-#mpris.paused {
-  color: #888888;
-}
-
-#custom-media.stopped {
+#window.empty {
   opacity: 0;
   min-width: 0;
   padding: 0;
   margin: 0;
 }
 
-/* -------------------- Network -------------------- */
+/* ── Media player ───────────────────────────────────────────────────────── */
+#mpris {
+  padding: 0 14px;
+  margin: 0 3px;
+  border-radius: 8px;
+  background: @wal_muted_soft;
+  color: @wal_fg;
+}
+
+#mpris:hover {
+  background: @wal_muted_hover;
+}
+
+#mpris.paused {
+  color: @wal_dim;
+}
+
+/* ── Right-side module sizes ────────────────────────────────────────────── */
+/* icon-only: big enough to see clearly */
+#network,
+#bluetooth,
+#backlight,
+#idle_inhibitor {
+  font-size: 20px;
+}
+
+/* icon + text: explicit match to base */
+#pulseaudio,
+#battery,
+#custom-stats {
+  font-size: 14px;
+}
+
+#custom-power {
+  font-size: 18px;
+}
+
+/* ── Stats (CPU + RAM combined) ─────────────────────────────────────────── */
+#custom-stats {
+  padding: 0 12px;
+  margin: 0 2px;
+  border-radius: 8px;
+  color: @wal_dim;
+  background: @wal_dim_soft;
+}
+
+#custom-stats:hover {
+  background: @wal_dim_hover;
+  color: @wal_fg;
+}
+
+#custom-stats.warning {
+  color: @wal_accent;
+  background: @wal_accent_soft;
+}
+
+#custom-stats.critical {
+  color: @wal_red;
+  background: @wal_red_soft;
+}
+
+/* ── Pulseaudio ─────────────────────────────────────────────────────────── */
+#pulseaudio {
+  padding: 0 14px;
+  margin: 0 3px;
+  border-radius: 8px;
+  color: @wal_fg;
+  background: @wal_fg_soft;
+}
+
+#pulseaudio:hover {
+  background: @wal_fg_hover;
+}
+
+#pulseaudio.muted {
+  color: @wal_muted;
+  background: @wal_muted_soft;
+}
+
+/* ── Backlight ──────────────────────────────────────────────────────────── */
+#backlight {
+  padding: 0 14px;
+  margin: 0 3px;
+  border-radius: 8px;
+  color: @wal_fg;
+  background: @wal_dim_soft;
+}
+
+#backlight:hover {
+  background: @wal_dim_hover;
+  color: @wal_fg;
+}
+
+/* ── Network & Bluetooth ────────────────────────────────────────────────── */
 #network,
 #bluetooth {
-  padding: 0 10px;
-  margin: 0 2px;
-  background: transparent;
-  color: #ffffff;
-  font-size: 16px;
-  transition: all 0.2s ease;
+  padding: 0 14px;
+  margin: 0 3px;
+  border-radius: 8px;
+  color: @wal_fg;
+  background: @wal_accent_soft;
 }
 
 #network:hover,
 #bluetooth:hover {
-  color: #cccccc;
+  background: @wal_accent_hover;
 }
 
 #network.disconnected,
-#bluetooth.disabled {
-  color: #666666;
+#bluetooth.disabled,
+#bluetooth.off {
+  color: @wal_muted;
+  background: @wal_muted_soft;
 }
 
-/* -------------------- System Tray -------------------- */
-#tray {
-  padding: 0 6px;
-  margin: 0 4px;
+/* ── Battery ────────────────────────────────────────────────────────────── */
+#battery {
+  padding: 0 14px;
+  margin: 0 3px;
+  border-radius: 8px;
+  color: @wal_fg;
+  background: @wal_fg_soft;
+}
+
+#battery:hover {
+  background: @wal_fg_hover;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: @wal_green;
+}
+
+#battery.warning:not(.charging) {
+  color: @wal_accent;
+  background: @wal_accent_soft;
+}
+
+#battery.critical:not(.charging) {
+  color: @wal_red;
+  background: @wal_red_soft;
+  animation: blink 1.5s step-start infinite;
+}
+
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.55; }
+  100% { opacity: 1; }
+}
+
+/* ── Idle inhibitor ─────────────────────────────────────────────────────── */
+#idle_inhibitor {
+  padding: 0 12px;
+  margin: 0 2px;
+  border-radius: 8px;
+  color: @wal_muted;
   background: transparent;
+}
+
+#idle_inhibitor.activated {
+  color: @wal_accent;
+  background: @wal_accent_soft;
+}
+
+/* ── Tray ───────────────────────────────────────────────────────────────── */
+#tray {
+  padding: 0 8px;
+  margin: 0 4px;
+  border-radius: 8px;
+  background: @wal_dim_soft;
 }
 
 #tray > .passive {
@@ -189,5 +260,31 @@ tooltip label {
 
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
-  background-color: rgba(255, 70, 70, 0.3);
+  background: @wal_red_soft;
+}
+
+/* ── Power button ───────────────────────────────────────────────────────── */
+#custom-power {
+  padding: 0 16px;
+  margin: 0 2px 0 8px;
+  border-radius: 8px;
+  color: @wal_muted;
+  background: transparent;
+}
+
+#custom-power:hover {
+  color: @wal_red;
+  background: @wal_red_soft;
+}
+
+/* ── Tooltips ───────────────────────────────────────────────────────────── */
+tooltip {
+  background: @wal_bg_module;
+  border: 1px solid @wal_accent_soft;
+  border-radius: 10px;
+  padding: 8px;
+}
+
+tooltip label {
+  color: @wal_fg;
 }

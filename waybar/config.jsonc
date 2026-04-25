@@ -1,29 +1,77 @@
 {
     "layer": "top",
     "position": "top",
-    "style": "~/.config/waybar/old.css",
+    "style": "~/.config/waybar/style.css",
     "margin-top": 6,
     "margin-bottom": 6,
     "margin-left": 12,
     "margin-right": 12,
 
-    "height": 40, // Waybar height (to be removed for auto height)
-    "spacing": 8, // Gaps between modules (4px)
+    "height": 40,
+    "spacing": 4,
     "padding": 2,
-
     "mode": "dock",
 
-    "modules-left": ["clock", "mpris"],
+    "modules-left":   ["hyprland/window", "clock", "mpris"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["tray", "pulseaudio", "backlight", "network", "bluetooth", "battery"],
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
+    "modules-right":  ["tray", "idle_inhibitor", "custom/stats", "pulseaudio", "backlight", "network", "bluetooth", "battery", "custom/power"],
+
+    // ── Left ──────────────────────────────────────────────────────────────
+
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 30,
+        "separate-outputs": true,
+        "rewrite": {
+            "(.+) — Brave":                "󰖟  Brave",
+            "(.+) - Brave":                "󰖟  Brave",
+            "(.+) - Visual Studio Code":   "󰨞  Code",
+            "(.+) — Mozilla Firefox":      "󰈹  Firefox",
+            "(.+) - Mozilla Firefox":      "󰈹  Firefox",
+            "(.+) - Cursor":               "󰨞  Cursor",
+            "Cursor":                      "󰨞  Cursor",
+            "":                            ""
         }
+    },
+
+    "clock": {
+        "format": "󰸗  {:%I:%M %p}",
+        "tooltip-format": "<big>{:%A, %B %d %Y}</big>\n<tt><small>{calendar}</small></tt>",
+        "on-click": "brave https://calendar.google.com/calendar/u/0/r"
+    },
+
+    "mpris": {
+        "format": "{player_icon}  {title}",
+        "format-paused": "⏸  {title}",
+        "max-length": 35,
+        "player-icons": {
+            "default":  "▶",
+            "spotify":  "󰓇",
+            "firefox":  "󰈹",
+            "mpv":      "󰐊"
+        },
+        "status-icons": {
+            "paused": "⏸"
+        }
+    },
+
+    // ── Right ─────────────────────────────────────────────────────────────
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated":   "󰅶",
+            "deactivated": "󰾪"
+        },
+        "tooltip-format-activated":   "Idle inhibitor on",
+        "tooltip-format-deactivated": "Idle inhibitor off"
+    },
+
+    "custom/stats": {
+        "exec": "~/.config/waybar/scripts/stats.sh",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "ghostty -e htop"
     },
 
     "tray": {
@@ -32,120 +80,75 @@
         "show-passive-items": false
     },
 
-    "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%I:%M %p}",
-        "on-click": "brave https://calendar.google.com/calendar/u/0/r"
-
-    },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{}% "
-    },
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+    "pulseaudio": {
+        "format": "{volume}%  <span size='x-large'>{icon}</span>",
+        "format-bluetooth": "{volume}%  <span size='x-large'>󰂰</span>",
+        "format-bluetooth-muted": "<span size='x-large'>󰝟</span>",
+        "format-muted": "<span size='x-large'>󰝟</span>",
+        "format-icons": {
+            "headphone":  "󰋋",
+            "hands-free": "󰋋",
+            "headset":    "󰋎",
+            "phone":      "󰏲",
+            "portable":   "󰕾",
+            "car":        "󰄋",
+            "default":    ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click":       "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-scroll-up":   "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
     },
 
     "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "format-alt": "<span size='x-large'>{icon}</span>"
+        "format": "{icon}",
+        "format-icons": ["󰃞", "󰃞", "󰃟", "󰃟", "󰃠", "󰃠", "󰃡", "󰃡", "󰃡"],
+        "tooltip-format": "Brightness: {percent}%",
+        "on-scroll-up":   "brightnessctl -e4 -n2 set 5%+",
+        "on-scroll-down": "brightnessctl -e4 -n2 set 5%-"
+    },
+
+    "network": {
+        "format-wifi":         "󰖩",
+        "format-ethernet":     "󰈀",
+        "format-disconnected": "󰖪",
+        "tooltip-format-wifi":         "{essid}  {signalStrength}%\n↑{bandwidthUpBits} ↓{bandwidthDownBits}",
+        "tooltip-format-ethernet":     "{ifname}: {ipaddr}",
+        "tooltip-format-disconnected": "Disconnected",
+        "on-click":       "~/.config/rofi/scripts/wifi-manager",
+        "on-click-right": "nm-connection-editor"
+    },
+
+    "bluetooth": {
+        "format":                          "󰂯",
+        "format-connected":                "󰂱",
+        "format-connected-battery":        "󰂱",
+        "format-disabled":                 "󰂲",
+        "format-off":                      "󰂲",
+        "tooltip-format":                  "{status}",
+        "tooltip-format-connected":        "{num_connections} connected\n{device_enumerate}",
+        "tooltip-format-enumerate-connected":         "{device_alias}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}  {device_battery_percentage}%",
+        "on-click":       "~/.config/hypr/scripts/toggle-bt.sh",
+        "on-click-right": "blueman-manager"
     },
 
     "battery": {
         "states": {
-            // "good": 95,
-            "warning": 30,
+            "warning":  30,
             "critical": 15
         },
-        "format": "{capacity}% <span size='x-large'>{icon}</span> ",
-        "format-charging": "{capacity}% 󰂄",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "<span size='x-large'>{icon}</span>",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": ""
-        "format-icons": ["", "", "", "", ""]
-    },
-    "battery#bat2": {
-        "bat": "BAT2"
+        "format":          "{capacity}%  <span size='x-large'>{icon}</span>",
+        "format-charging": "{capacity}%  <span size='x-large'>󰂄</span>",
+        "format-plugged":  "{capacity}%  <span size='x-large'></span>",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "on-click":       "ghostty -e btop",
+        "on-click-right": "~/.config/rofi/scripts/power-manager"
     },
 
-"network": {
-    "format-wifi": "<span size='x-large'>{icon}</span>",
-    "format-ethernet": "<span size='x-large'>󰈀</span>",
-    "format-disconnected": "<span size='x-large'>󰖪</span>",
-    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
-    "tooltip-format-ethernet": "{ifname}: {ipaddr}",
-    "tooltip-format-disconnected": "Disconnected",
-    "on-click": "~/.config/rofi/scripts/wifi-manager"
-},
-
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% <span font='15'>{icon}</span>",
-        "format-bluetooth": "{volume}% ",
-        "format-bluetooth-muted": "󰝟 ",
-        "format-muted": "󰝟",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol",
-        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && /home/krish/.config/waybar/scripts/volume-popup.sh",
-        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && /home/krish/.config/waybar/scripts/volume-popup.sh"
-    },
-
-    "mpris": {
-        "format": "{player_icon} {title}",
-        "format-paused": "{status_icon} <i>{title}</i>",
-        "player-icons": {
-            "default": "▶",
-            "mpv": "🎵"
-        },
-        "status-icons": {
-            "paused": "⏸"
-        }
-    // "ignored-players": ["firefox"]
-    }, 
-
-    "bluetooth": {
-        "format": "<span size='x-large'>󰂯</span>",
-        "format-connected": "<span size='x-large'>󰂱</span>",
-        "format-connected-battery": "<span size='x-large'>󰂱</span>",
-        "format-disabled": "<span size='x-large'>󰂲</span>",
-        "format-off": "<span size='x-large'>󰂲</span>",
-        "tooltip-format": "{status}",
-        "tooltip-format-connected": "{num_connections} device(s) connected\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias} {device_battery_percentage}%",
-        "tooltip-format-enumerate-connected-battery": "{device_alias} {device_battery_percentage}%",
-        "on-click": "~/.config/hypr/scripts/toggle-bt.sh"
-    },
-
-    "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-        "activated": "󰅶",
-        "deactivated": "󰾪"
-    },
-    "tooltip-format-activated": "Idle inhibitor active",
-    "tooltip-format-deactivated": "Idle inhibitor inactive"
-}
-
+    "custom/power": {
+        "format": "⏻",
+        "on-click": "~/.config/rofi/scripts/power-manager",
+        "tooltip": false
+    }
 }
