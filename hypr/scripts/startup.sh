@@ -28,6 +28,10 @@ done
 ~/.config/hypr/scripts/wall-engine.sh
 
 # -------------- SYSTEM SERVICES ----------------------------
+# apply latest pywal colors before waybar starts
+~/.config/waybar/wal-reload.sh
+~/.config/dunst/wal-reload.sh
+
 # waybar + autohide script
 waybar &
 ~/.config/waybar/scripts/autohide.sh &

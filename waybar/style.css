@@ -124,7 +124,7 @@
 #clock {
   padding: 0 16px;
   margin: 4px 2px;
-  color: @wal_accent;
+  color: @wal_dim;
   font-weight: 600;
   background: @wal_accent_soft;
   border-radius: 10px;
@@ -153,7 +153,7 @@
   margin: 4px 3px;
   border-radius: 8px;
   background: @wal_muted_soft;
-  color: @wal_fg;
+  color: rgba(255, 255, 255, 0.35);
 }
 
 #mpris:hover {

@@ -73,10 +73,18 @@ def restart_waybar():
 if __name__ == "__main__":
     import sys
     try:
+        # Skip regeneration if colors.css is already newer than colors.json
+        force = "--force" in sys.argv or "--restart" in sys.argv
+        if not force and os.path.exists(COLORS_CSS):
+            if os.path.getmtime(COLORS_CSS) >= os.path.getmtime(WAL_JSON):
+                print("waybar colors.css is up to date.")
+                sys.exit(0)
+
         colors = load_colors()
         css = build_css(colors)
         with open(COLORS_CSS, "w") as f:
             f.write(css)
+
         if "--restart" in sys.argv:
             restart_waybar()
             print("waybar reloaded with new pywal colors.")
