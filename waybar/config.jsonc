@@ -64,7 +64,7 @@
 
     "group/system": {
         "orientation": "horizontal",
-        "modules": ["tray", "idle_inhibitor", "custom/stats"]
+        "modules": ["tray", "custom/launcher", "idle_inhibitor", "custom/stats"]
     },
 
     "group/av": {
@@ -164,6 +164,12 @@
         "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
         "on-click":       "ghostty -e btop",
         "on-click-right": "~/.config/rofi/scripts/power-manager"
+    },
+
+    "custom/launcher": {
+        "format": "󰍉",
+        "on-click": "~/.config/rofi/scripts/app-launcher",
+        "tooltip": false
     },
 
     "custom/power": {

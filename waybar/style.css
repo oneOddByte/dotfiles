@@ -51,6 +51,7 @@
 
 /* modules inside groups: flat by default */
 #system #tray,
+#system #custom-launcher,
 #system #idle_inhibitor,
 #system #custom-stats,
 #av #pulseaudio,
@@ -329,6 +330,20 @@
 }
 
 /* ── Power button ───────────────────────────────────────────────────────── */
+#custom-launcher {
+  padding: 0 10px;
+  margin: 0 2px;
+  border-radius: 8px;
+  font-size: 18px;
+  color: @wal_muted;
+  background: transparent;
+}
+
+#custom-launcher:hover {
+  color: @wal_fg;
+  background: @wal_dim_soft;
+}
+
 #custom-power {
   padding: 0 10px;
   margin: 0 2px 0 24px;
