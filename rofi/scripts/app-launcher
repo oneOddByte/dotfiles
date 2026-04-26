@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+import subprocess
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(__file__))
+from utils import get_wal_theme_str
+
+CONFIG_DIR = os.environ.get("XDG_CONFIG_HOME", os.path.expanduser("~/.config"))
+THEME = f"{CONFIG_DIR}/rofi/app-launcher.rasi"
+FILE_SEARCH   = f"{CONFIG_DIR}/rofi/scripts/file-search"
+FOLDER_SEARCH = f"{CONFIG_DIR}/rofi/scripts/folder-search"
+
+cmd = [
+    "rofi",
+    "-show", "drun",
+    "-modes", f"drun,run,files:{FILE_SEARCH},folders:{FOLDER_SEARCH}",  # Ctrl+Tab to switch
+    "-show-icons",
+    "-theme", THEME,
+]
+
+wal = get_wal_theme_str()
+if wal:
+    cmd += ["-theme-str", wal]
+
+subprocess.run(cmd)

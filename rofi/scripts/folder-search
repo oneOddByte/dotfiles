@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Rofi script mode: fuzzy folder search via fd, opened with xdg-open on selection.
+
+SELECTED="$1"
+
+if [[ -n "$SELECTED" ]]; then
+    setsid nautilus "$SELECTED" >/dev/null 2>&1 &
+    exit 0
+fi
+
+SEARCH_DIRS=(
+    "$HOME/Documents"
+    "$HOME/Downloads"
+    "$HOME/Desktop"
+    "$HOME/Dev"
+    "$HOME/Pictures"
+)
+
+if command -v fd &>/dev/null; then
+    fd --type d \
+       --max-depth 6 \
+       --exclude .git \
+       --exclude node_modules \
+       --exclude .cache \
+       --exclude __pycache__ \
+       . "${SEARCH_DIRS[@]}" 2>/dev/null | head -2000
+else
+    find "${SEARCH_DIRS[@]}" -maxdepth 6 -type d \
+         \( -name .git -o -name node_modules -o -name .cache \) -prune \
+         -o -type d -print 2>/dev/null | head -2000
+fi

@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Rofi script mode: fuzzy file search via fd, opened with xdg-open on selection.
+# Rofi calls this with no args to get the list, then with the selected path to open it.
+
+SELECTED="$1"
+
+if [[ -n "$SELECTED" ]]; then
+    setsid xdg-open "$SELECTED" >/dev/null 2>&1 &
+    exit 0
+fi
+
+SEARCH_DIRS=(
+    "$HOME/Documents"
+    "$HOME/Downloads"
+    "$HOME/Desktop"
+    "$HOME/Dev"
+    "$HOME/Pictures"
+)
+
+# Dump files — Rofi's built-in fuzzy filter handles the searching
+if command -v fd &>/dev/null; then
+    fd --type f --type d \
+       --max-depth 6 \
+       --exclude .git \
+       --exclude node_modules \
+       --exclude .cache \
+       --exclude __pycache__ \
+       . "${SEARCH_DIRS[@]}" 2>/dev/null | head -2000
+else
+    find "${SEARCH_DIRS[@]}" -maxdepth 6 \
+         \( -name .git -o -name node_modules -o -name .cache \) -prune \
+         -o -print 2>/dev/null | head -2000
+fi

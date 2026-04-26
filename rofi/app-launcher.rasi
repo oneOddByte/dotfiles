@@ -1,0 +1,131 @@
+/*
+ * App Launcher Theme — self-contained, pywal colors injected at runtime via -theme-str
+ * Tabs: Ctrl+Tab to switch between Apps and Run
+ */
+
+* {
+    bg:               #1a1426;
+    bg-alt:           #2d2438;
+    fg:               #9d8ba8;
+    active:           #ff6b8a;
+
+    font:             "Cascadia Code NF 13";
+    border:           0;
+    margin:           0;
+    padding:          0;
+    spacing:          0;
+    background-color: @bg;
+    text-color:       @fg;
+}
+
+configuration {
+    show-icons:          true;
+    icon-theme:          "Papirus-Dark";
+    drun-display-format: "{name}";
+    display-drun:        "󰀻  Apps";
+    display-run:         "  Run";
+    display-files:       "󰈙  Files";
+    display-folders:     "󰉋  Folders";
+    font:                "Cascadia Code NF 13";
+    kb-mode-next:        "Tab";
+    kb-mode-previous:    "shift+Tab";
+    kb-row-down:         "Down";
+    kb-row-up:           "Up";
+    kb-complete:         "";
+    kb-element-next:     "";
+    kb-element-prev:     "";
+}
+
+window {
+    location:         center;
+    anchor:           center;
+    width:            580px;
+    border-radius:    12px;
+    background-color: @bg;
+}
+
+mainbox {
+    children:         [ inputbar, sidebar, listview ];
+    background-color: transparent;
+}
+
+inputbar {
+    background-color: @bg;
+    border-bottom:    2px solid;
+    border-color:     @active;
+    children:         [ entry ];
+    border-radius:    12px 12px 0px 0px;
+    padding:          4px 8px;
+}
+
+entry {
+    background-color: transparent;
+    text-color:       @fg;
+    padding:          10px 8px;
+    placeholder:      "Search…";
+    placeholder-color: @fg;
+}
+
+sidebar {
+    background-color: transparent;
+    padding:          6px 8px;
+    spacing:          6px;
+    orientation:      horizontal;
+}
+
+button {
+    background-color: transparent;
+    text-color:       @fg;
+    padding:          5px 16px;
+    border-radius:    6px;
+    cursor:           pointer;
+}
+
+button selected {
+    background-color: @active;
+    text-color:       @bg;
+    border-radius:    6px;
+}
+
+listview {
+    lines:            9;
+    scrollbar:        false;
+    padding:          8px;
+    spacing:          2px;
+    background-color: @bg;
+    border-radius:    0px 0px 12px 12px;
+}
+
+element {
+    padding:          8px 10px;
+    border-radius:    6px;
+    background-color: transparent;
+    text-color:       @fg;
+    cursor:           pointer;
+    children:         [ element-icon, element-text ];
+    orientation:      horizontal;
+}
+
+element-icon {
+    background-color: transparent;
+    size:             26px;
+    padding:          0px 12px 0px 2px;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+    vertical-align:   0.5;
+}
+
+element selected.normal {
+    background-color: @active;
+    text-color:       @bg;
+    border-radius:    6px;
+}
+
+element normal.urgent,
+element selected.urgent {
+    background-color: @active;
+    text-color:       @bg;
+}
