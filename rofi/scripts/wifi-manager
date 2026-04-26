@@ -17,6 +17,7 @@ icon_connect   = ""
 icon_forget    = "󰩹"
 icon_back      = "󰁍"
 icon_new       = "󰐕"
+icon_active    = "󰄬"
 
 CONFIG_DIR  = os.environ.get("XDG_CONFIG_HOME", os.path.expanduser("~/.config"))
 WIFI_THEME  = f"{CONFIG_DIR}/rofi/wifi.rasi"
@@ -94,6 +95,17 @@ def list_wifi_networks() -> dict[str, WifiNetwork]:
     return networks
 
 
+def get_active_ssid() -> Optional[str]:
+    out = subprocess.run(
+        ["nmcli", "-t", "-f", "active,ssid", "dev", "wifi"],
+        capture_output=True, text=True,
+    ).stdout.splitlines()
+    for line in out:
+        if line.startswith("yes:"):
+            return line.split(":", 1)[1].strip()
+    return None
+
+
 def is_wifi_enabled() -> bool:
     return "enabled" in subprocess.run(
         ["nmcli", "-fields", "WIFI", "g"], capture_output=True, text=True
@@ -156,14 +168,18 @@ def show_network_list():
         toggle_label = f"{icon_disabled}  Disable Wi-Fi"
         networks = list_wifi_networks()
         sorted_nets = sorted(networks.values(), key=lambda n: (not n.saved, n.ssid))
+        active_ssid = get_active_ssid()
     else:
         toggle_label = f"{icon_enabled}  Enable Wi-Fi"
         sorted_nets = []
+        active_ssid = None
 
     labels[toggle_label] = TOGGLE_WIFI
 
     for net in sorted_nets:
-        if net.saved:
+        if net.ssid == active_ssid:
+            prefix = icon_active
+        elif net.saved:
             prefix = icon_saved
         elif net.security and net.security.startswith("WPA"):
             prefix = icon_locked

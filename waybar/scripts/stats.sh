@@ -3,6 +3,29 @@
 
 import time
 import json
+import glob
+
+
+def cpu_temp() -> str:
+    # x86_pkg_temp is the CPU package temperature
+    candidates = [
+        "/sys/class/thermal/thermal_zone6/temp",  # x86_pkg_temp on this machine
+    ]
+    # fallback: scan all zones for x86_pkg_temp
+    for zone in glob.glob("/sys/class/thermal/thermal_zone*/"):
+        try:
+            with open(zone + "type") as f:
+                if "pkg_temp" in f.read() or "acpitz" in f.read():
+                    candidates.insert(0, zone + "temp")
+        except OSError:
+            pass
+    for path in candidates:
+        try:
+            with open(path) as f:
+                return f"{int(f.read().strip()) // 1000}°C"
+        except OSError:
+            pass
+    return "N/A"
 
 
 def cpu_pct() -> int:
@@ -32,6 +55,7 @@ def mem_info() -> tuple[int, float, float]:
 
 
 cpu  = cpu_pct()
+temp = cpu_temp()
 mpct, mused, mtotal = mem_info()
 
 css_class = "normal"
@@ -42,6 +66,6 @@ elif cpu > 70 or mpct > 70:
 
 print(json.dumps({
     "text":    f"<span size='x-large'>󰘚</span> {cpu}%  <span size='x-large'>󰍛</span> {mpct}%",
-    "tooltip": f"CPU: {cpu}%\nRAM: {mused:.1f} G / {mtotal:.1f} G",
+    "tooltip": f"CPU: {cpu}%  {temp}\nRAM: {mused:.1f} G / {mtotal:.1f} G",
     "class":   css_class,
 }))
