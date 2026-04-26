@@ -108,3 +108,6 @@ eval "$(zoxide init zsh)"
 alias cd='z'
 
 export PATH="$HOME/.local/bin:$PATH"
+
+# shell functions
+source "$HOME/.config/zsh/functions/lcnew.zsh"

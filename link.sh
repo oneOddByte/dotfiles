@@ -31,6 +31,7 @@ home_items=(
 # Folders to put inside ~/.config
 config_items=(
   "nvim"
+  "zsh"
   "tmux"
   "ghostty"
   "hypr"
