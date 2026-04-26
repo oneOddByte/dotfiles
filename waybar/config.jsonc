@@ -91,7 +91,7 @@
         "exec": "~/.config/waybar/scripts/stats.sh",
         "return-type": "json",
         "interval": 5,
-        "on-click": "ghostty -e htop"
+        "on-click": "~/.config/hypr/scripts/toggle-btop.sh"
     },
 
     "tray": {

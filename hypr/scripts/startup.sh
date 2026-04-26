@@ -37,7 +37,11 @@ waybar &
 ~/.config/waybar/scripts/autohide.sh &
 
 # battery alert sound script
-~/.config/hypr/scripts/battery_alert.sh &
+pkill -f '^bash /home/krish/.config/hypr/scripts/battery_alert.sh$' 2>/dev/null || true
+nohup bash ~/.config/hypr/scripts/battery_alert.sh >/dev/null 2>&1 </dev/null &
+
+# OSD server for volume/brightness pills
+swayosd-server &
 
 # -------------- APPLICATIONS ----------------------------
 # open on specific workspaces

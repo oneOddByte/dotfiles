@@ -12,10 +12,21 @@ THEME = f"{CONFIG_DIR}/rofi/app-launcher.rasi"
 FILE_SEARCH   = f"{CONFIG_DIR}/rofi/scripts/file-search"
 FOLDER_SEARCH = f"{CONFIG_DIR}/rofi/scripts/folder-search"
 
+mode_list = [
+    "drun",
+    "run",
+    f"files:{FILE_SEARCH}",
+    f"folders:{FOLDER_SEARCH}",
+]
+
+# Add calculator tab if rofi-calc plugin binary is available.
+if os.path.exists("/usr/lib/rofi/calc.so") or os.path.exists("/usr/lib64/rofi/calc.so"):
+    mode_list.append("calc")
+
 cmd = [
     "rofi",
     "-show", "drun",
-    "-modes", f"drun,run,files:{FILE_SEARCH},folders:{FOLDER_SEARCH}",  # Ctrl+Tab to switch
+    "-modes", ",".join(mode_list),
     "-show-icons",
     "-theme", THEME,
 ]

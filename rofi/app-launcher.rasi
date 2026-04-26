@@ -26,6 +26,7 @@ configuration {
     display-run:         "  Run";
     display-files:       "󰈙  Files";
     display-folders:     "󰉋  Folders";
+    display-calc:        "󰪚  Calc";
     font:                "Cascadia Code NF 13";
     kb-mode-next:        "Tab";
     kb-mode-previous:    "shift+Tab";
