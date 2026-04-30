@@ -14,7 +14,12 @@ lcnew() {
 
   local name slug target
   name="$*"
-  slug="$(printf '%s' "$name" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/_/g; s/_+/_/g; s/^_+|_+$//g')"
+  
+  # 1. Convert to lowercase
+  # 2. Replace the FIRST space/special char sequence with a hyphen
+  # 3. Replace all REMAINING space/special char sequences with underscores
+slug=$(echo "$name" | tr '[:upper:]' '[:lower:]' | sed -E 's/^[^a-z0-9]+//; s/[^a-z0-9]+$//; s/[^a-z0-9]+/-/1; s/[^a-z0-9]+/_/g')
+
 
   if [[ -z "$slug" ]]; then
     echo "Error: invalid problem name."
