@@ -100,7 +100,7 @@
 
 [bluetooth]
     appname = "blueman"
-    timeout = 0
+    timeout = 8
 
 [wifi]
     appname = "WiFi Manager"
