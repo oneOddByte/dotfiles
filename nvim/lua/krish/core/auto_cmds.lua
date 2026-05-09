@@ -77,7 +77,7 @@ local function generate_tmux_palette()
 		time_date = hl_color("Comment", "foreground") or "#6c7086",
 		battery_icon = hl_color("Constant", "foreground") or "#f38ba8",
 		inactive_bg = hl_color("StatusLineNC", "background") or normal_bg,
-		inactive_fg = hl_color("StatusLineNC", "foreground") or "#6c7086",
+		inactive_fg = hl_color("Comment", "foreground") or "#6c7086",
 	}
 end
 
