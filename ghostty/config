@@ -19,7 +19,7 @@ font-feature = "+liga"
 # [ ROBOTO MONO ]
  font-family = "Roboto Mono"
  font-style = "Medium"
- adjust-cell-height = 20%
+ adjust-cell-height = 25%
 
 # [ FIRA CODE ]
 #font-family = "Fira Code"

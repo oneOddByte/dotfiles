@@ -47,7 +47,7 @@ return {
 		lazy = true,
 		-- priority = 1000, -- Load before other UI plugins
 		config = function()
-			vim.g.gruvbox_material_background = "hard" -- 'soft', 'medium', 'hard'
+			vim.g.gruvbox_material_background = "medium" -- 'soft', 'medium', 'hard'
 			vim.g.gruvbox_material_foreground = "original"
 			vim.g.gruvbox_material_better_performance = 1
 			-- vim.g.gruvbox_material_enable_italic = 1
@@ -75,7 +75,7 @@ return {
 		"projekt0n/github-nvim-theme",
 		cmd = "CustomColorschemeGithub",
 		name = "github-theme",
-		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		lazy = true, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
 			require("github-theme").setup({
@@ -171,6 +171,95 @@ return {
 			})
 
 			require("neomodern").load()
+		end,
+	},
+
+	{
+		"neanias/everforest-nvim",
+		cmd = "CustomColorschemeEverforest",
+		version = false,
+		lazy = true,
+		priority = 1000, -- Load this first
+		config = function()
+			require("everforest").setup({
+				-- "hard", "medium"(default), or "soft"
+				background = "hard",
+				-- Use italics for comments
+				enable_italic = true,
+				-- Dim inactive windows
+				dim_inactive_windows = false,
+				-- Transparent background
+				transparent_background = true,
+				-- Style for float windows ("bold" or "dark")
+				float_style = "dark",
+				-- Update diagnostic colors
+				diagnostic_line_highlight = false,
+			})
+			-- Load the colorscheme
+			vim.cmd([[colorscheme everforest]])
+		end,
+	},
+
+	{
+		"Mofiqul/vscode.nvim",
+		cmd = "CustomColorschemeVscode",
+		lazy = true,
+		priority = 1000,
+		config = function()
+			require("vscode").setup({
+				-- Choose between 'dark' or 'light'
+				style = "dark",
+				-- Enable transparent background
+				transparent = false,
+				-- Enable italic comment
+				italic_comments = true,
+				underline_links = true,
+				-- Disable nvim-tree background (so it matches the editor)
+				disable_nvimtree_bg = true,
+				-- Override specific colors or highlight groups
+				-- This is useful if you want to tweak the 'VS Code' look
+				group_overrides = {
+					-- Example: Make the cursor line a bit more visible
+					CursorLine = { bg = "#2b2b2b" },
+				},
+			})
+			-- Load the colorscheme
+			vim.cmd.colorscheme("vscode")
+		end,
+	},
+
+	{
+		"shaunsingh/nord.nvim",
+		lazy = true,
+		priority = 1000,
+		cmd = "CustomColorschemeNord",
+		config = function()
+			vim.g.nord_contrast = true
+			vim.g.nord_borders = false
+			vim.g.nord_disable_background = false
+			vim.g.nord_italic = true
+			-- Load the colorscheme
+			vim.cmd([[colorscheme nord]])
+		end,
+	},
+
+	{
+		"AlexvZyl/nordic.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("nordic").setup({
+				-- variant = "darker",
+				variant = "softer",
+				cursorline = {
+					bold = false,
+					number_bold = false,
+					transparent = false,
+				},
+				reduced_blue = true,
+			})
+			-- Load the colorscheme
+			vim.cmd.colorscheme("nordic")
 		end,
 	},
 }

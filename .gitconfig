@@ -1,7 +1,11 @@
-[url "git@github.com:"]
-	insteadOf = https://github.com/
 [user]
 	email = krishanth.k2006@gmail.com
 	name = Krishanth K
 [init]
 	defaultBranch = main
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

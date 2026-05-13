@@ -123,8 +123,10 @@ vim.diagnostic.config({
 local clients = vim.lsp.get_clients()
 
 -- vim.cmd("colorscheme gruvbox-material")
+-- vim.cmd("colorscheme everforest")
+vim.cmd("colorscheme nordic")
 -- vim.cmd("colorscheme rose-pine-main")
-vim.cmd("colorscheme github_dark_tritanopia")
+-- vim.cmd("colorscheme github_dark_tritanopia")
 -- vim.cmd("colorscheme rose-pine-moon")
 -- vim.cmd("colorscheme kanagawa-wave")
 -- vim.cmd("colorscheme catppuccin-mocha")
