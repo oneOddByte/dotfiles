@@ -38,12 +38,10 @@ config_items=(
   "waybar"
   "wofi"
   "rofi"
-  "eww"
   "kwin"
-  "tasks"
-  "wireplumber"
-  "conky"
   "dunst"
+  "avizo"
+  "codeforces_test.sh"
 )
 
 # Ensure ~/.config exists

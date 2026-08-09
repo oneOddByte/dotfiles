@@ -93,6 +93,9 @@ alias cvat='cd /opt/cvat && export CVAT_HOST=localhost && docker-compose up -d'
 alias gpuon='sudo envycontrol -s hybrid'
 alias gpuoff='sudo envycontrol -s integrated'
 
+alias cf='~/.config/codeforces_test.sh'
+
+
 bindkey -v
 
 export NVM_DIR="$HOME/.nvm"
