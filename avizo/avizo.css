@@ -1,0 +1,15 @@
+/* ~/.config/avizo/avizo.css */
+window {
+    background-color: rgba(30, 30, 46, 0.85); /* Deep translucent dark background */
+    border-radius: 24px;                      /* Fully rounds the edges into a pill shape */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+progress {
+    background-color: #ff007f;                /* Bright accent slider color */
+    border-radius: 12px;
+}
+
+image {
+    color: #cdd6f4;                           /* Icon color */
+}

@@ -39,6 +39,7 @@ config_items=(
   "wofi"
   "rofi"
   "eww"
+  "kwin"
   "tasks"
   "wireplumber"
   "conky"

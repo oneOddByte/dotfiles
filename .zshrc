@@ -90,6 +90,9 @@ alias fl='sudo focus_lock'
 
 alias cvat='cd /opt/cvat && export CVAT_HOST=localhost && docker-compose up -d'
 
+alias gpuon='sudo envycontrol -s hybrid'
+alias gpuoff='sudo envycontrol -s integrated'
+
 bindkey -v
 
 export NVM_DIR="$HOME/.nvm"
@@ -111,3 +114,10 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # shell functions
 source "$HOME/.config/zsh/functions/lcnew.zsh"
+
+# opencode
+export PATH=/home/krish/.opencode/bin:$PATH
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/krish/.local/bin:$PATH"

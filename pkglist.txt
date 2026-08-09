@@ -1,5 +1,3 @@
-alacritty
-albert
 alsa-tools
 alsa-utils
 ark
@@ -15,11 +13,8 @@ brightnessctl
 btop
 clang
 copyq
-docker
-docker-compose
 dunst
 efibootmgr
-eww-git
 fd
 ffmpegthumbs
 gemini-cli
@@ -27,7 +22,6 @@ ghc-libs
 ghostty
 git
 github-cli
-glfw
 gnome-keyring
 gnome-themes-extra
 grub
@@ -102,13 +96,10 @@ qt5-quickcontrols
 qt5-quickcontrols2
 qt5-wayland
 qt6-wayland
-ranger
-raylib
 reflector
 ripgrep
 rofi
 sddm
-sfml
 sioyek
 socat
 spotify
@@ -116,7 +107,6 @@ strace
 swappy
 sway
 swww
-timeshift
 tk
 tlp
 tmux
@@ -131,10 +121,8 @@ ttf-nerd-fonts-symbols
 ttf-nerd-fonts-symbols-mono
 unzip
 vdpauinfo
-warp-terminal
 waybar
 wayland-protocols
-wireplumber
 wl-clipboard
 wlr-randr
 woff2-font-awesome
@@ -145,7 +133,6 @@ xorg-xwayland
 yad
 yay
 yay-debug
-zathura
 zellij
 zenity
 zotero
