@@ -43,9 +43,10 @@ local function close()
 	state.buf = nil
 end
 
--- Open a real terminal in a floating window for the given shell command string.
-local function open_terminal_float(cmd)
-	-- If same float is still alive (e.g. a previous run), close it first.
+-- Open a real terminal in a floating window.
+-- argv: list of strings passed directly to termopen (no shell interpretation).
+-- cwd:  working directory for the process.
+local function open_terminal_float(argv, cwd)
 	close()
 
 	local buf = vim.api.nvim_create_buf(false, true)
@@ -54,11 +55,11 @@ local function open_terminal_float(cmd)
 	state.buf = buf
 	state.win = win
 
-	-- termopen() spawns a real PTY – interactive prompts, colours, Ctrl-D all work.
-	vim.fn.termopen(cmd, {
+	-- Pass a LIST so termopen never invokes a shell – no escaping issues.
+	-- The cwd option sets the process CWD directly; no `cd` needed in the cmd.
+	vim.fn.termopen(argv, {
+		cwd = cwd,
 		on_exit = function(_, code)
-			-- After the process finishes, stay in the window so the user can
-			-- read the output. Show a small hint at the bottom of the title.
 			if vim.api.nvim_win_is_valid(win) then
 				local icon = code == 0 and "✓" or "✗"
 				vim.api.nvim_win_set_config(win, vim.tbl_extend("force", float_cfg(), {
@@ -68,21 +69,18 @@ local function open_terminal_float(cmd)
 		end,
 	})
 
-	-- Enter insert/terminal mode immediately so the user can interact.
 	vim.cmd("startinsert")
 
-	-- Buffer-local keymaps (normal mode inside the terminal buffer)
 	local opts = { buffer = buf, silent = true }
 	vim.keymap.set("n", "q", close, opts)
-	vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], opts) -- Esc → normal mode in terminal
+	vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], opts)
 end
 
 -- ─── public API ──────────────────────────────────────────────────────────────
 
 --- Run the test suite for the current file.
---- If the float is already open, toggle it (hide/show).
+--- Invoking again while the float is open toggles it closed.
 function M.run()
-	-- Toggle: if the float is alive, just close it.
 	if is_alive() then
 		close()
 		return
@@ -94,18 +92,10 @@ function M.run()
 		return
 	end
 
-	local dir  = vim.fn.fnamemodify(file, ":h")
+	local dir   = vim.fn.fnamemodify(file, ":h")
 	local fname = vim.fn.fnamemodify(file, ":t")
 
-	-- cd into the file's directory so relative paths in the script work.
-	local cmd = string.format(
-		"cd %s && bash %s %s",
-		vim.fn.shellescape(dir),
-		vim.fn.shellescape(CF_SCRIPT),
-		vim.fn.shellescape(fname)
-	)
-
-	open_terminal_float(cmd)
+	open_terminal_float({ "bash", CF_SCRIPT, fname }, dir)
 end
 
 --- Add a new test case interactively (-a flag).
@@ -116,16 +106,10 @@ function M.add_test()
 		return
 	end
 
-	local dir  = vim.fn.fnamemodify(file, ":h")
+	local dir   = vim.fn.fnamemodify(file, ":h")
 	local fname = vim.fn.fnamemodify(file, ":t")
-	local cmd = string.format(
-		"cd %s && bash %s -a %s",
-		vim.fn.shellescape(dir),
-		vim.fn.shellescape(CF_SCRIPT),
-		vim.fn.shellescape(fname)
-	)
 
-	open_terminal_float(cmd)
+	open_terminal_float({ "bash", CF_SCRIPT, "-a", fname }, dir)
 end
 
 --- Reset all cached test cases, then prompt for a new one (-r flag).
@@ -136,16 +120,10 @@ function M.reset_tests()
 		return
 	end
 
-	local dir  = vim.fn.fnamemodify(file, ":h")
+	local dir   = vim.fn.fnamemodify(file, ":h")
 	local fname = vim.fn.fnamemodify(file, ":t")
-	local cmd = string.format(
-		"cd %s && bash %s -r %s",
-		vim.fn.shellescape(dir),
-		vim.fn.shellescape(CF_SCRIPT),
-		vim.fn.shellescape(fname)
-	)
 
-	open_terminal_float(cmd)
+	open_terminal_float({ "bash", CF_SCRIPT, "-r", fname }, dir)
 end
 
 -- ─── user commands ───────────────────────────────────────────────────────────
