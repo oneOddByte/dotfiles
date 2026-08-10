@@ -1,6 +1,7 @@
 require("krish.core.options")
 require("krish.core.keymaps")
 require("krish.core.compile_run")
+require("krish.core.cf_test")
 require("krish.core.auto_cmds")
 require("krish.core.zen_tmux").setup()
 require("krish.core.manhover")

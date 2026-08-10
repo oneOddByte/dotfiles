@@ -104,3 +104,19 @@ vim.keymap.set("n", "zo", "zo", { noremap = true, desc = "Open fold" })
 vim.keymap.set("n", "za", "za", { noremap = true, desc = "Toggle fold" })
 vim.keymap.set("n", "zR", "zR", { noremap = true, desc = "Open all folds" })
 vim.keymap.set("n", "zM", "zM", { noremap = true, desc = "Close all folds" })
+
+-- ─── Codeforces test runner ───────────────────────────────────────────────────
+-- <leader>ctt  →  run test cases (floating output window, toggleable)
+-- <leader>cta  →  add a new test case (interactive terminal split)
+-- <leader>ctr  →  reset test cases and add a fresh one
+vim.keymap.set("n", "<leader>ctt", function()
+	require("krish.core.cf_test").run()
+end, { noremap = true, silent = true, desc = "CF: run test cases" })
+
+vim.keymap.set("n", "<leader>cta", function()
+	require("krish.core.cf_test").add_test()
+end, { noremap = true, silent = true, desc = "CF: add a test case" })
+
+vim.keymap.set("n", "<leader>ctr", function()
+	require("krish.core.cf_test").reset_tests()
+end, { noremap = true, silent = true, desc = "CF: reset test cases" })
